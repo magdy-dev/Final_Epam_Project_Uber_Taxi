@@ -1,7 +1,8 @@
-/task2Loops/task2Loops.iml
-/task2Loops/.idea/
-/task1LInyarAlgorthm/.idea/
-/.idea/
-/task1LInyarAlgorthm/target/
-/task1LInyarAlgorthm/task1LInyarAlgorthm.iml
-/task2Loops/target/
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

@@ -34,14 +34,14 @@ public class RideDaoTest {
         driver.setName("magdy");
         driver.setLastName("shenoda");
         driver.setCarNumber("2222");
-        driver.setEmail("12m@x@nxx1zz.com");
+        driver.setEmail("321ss.com");
         driver.setPassword("11111");
         driver.setPhoneNumber("+1223444");
         driverDao.save(driver);
 
         client.setName("mina");
         client.setLastName("shenoda");
-        client.setEmail("1m3kx kxz@mzzz@zkmxnxzux11.com");
+        client.setEmail("123ss.com");
         client.setPassword("3456789");
         client.setPhoneNumber("1222222");
         clientDao.save(client);
