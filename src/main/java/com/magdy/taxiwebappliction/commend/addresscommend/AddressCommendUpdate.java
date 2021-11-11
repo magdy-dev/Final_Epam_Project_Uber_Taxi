@@ -16,7 +16,7 @@ public class AddressCommendUpdate implements Commend {
     private Address address = new Address();
 
     @Override
-    public Page execute(HttpServletRequest httpServletRequest) throws ServerException {
+    public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
 
         try {
             address.setTown("town");
@@ -26,7 +26,7 @@ public class AddressCommendUpdate implements Commend {
             logger.info("update"+address);
 
         } catch (ServiceException e) {
-            throw new ServerException(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
         return new Page("/home.jsp",true,"Success!");
     }

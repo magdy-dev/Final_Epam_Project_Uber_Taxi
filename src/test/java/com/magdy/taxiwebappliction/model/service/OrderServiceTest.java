@@ -42,7 +42,7 @@ public class OrderServiceTest {
         client.setPassword("3456789");
         client.setPhoneNumber("1222222");
         clientDao.save(client);
-
+            int x =0;
     }
 
     @After
@@ -77,7 +77,15 @@ public class OrderServiceTest {
 
     @Test
     public void update() throws ServiceException {
-
+        order = new Order("33", client, driver);
+        order = orderService.save(order);
+        Order actually = orderService.selectById(order.getId());
+        actually.setData("22/22");
+        actually.setClient(client);
+        actually.setDriver(driver);
+        orderService.update(actually);
+        Order expected = orderService.selectById(actually.getId());
+        Assert.assertEquals(expected, actually);
 
 
     }

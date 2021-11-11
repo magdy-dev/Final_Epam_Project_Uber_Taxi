@@ -16,7 +16,7 @@ public class AddressCommendRead implements Commend {
     private Address address = new Address();
 
     @Override
-    public Page execute(HttpServletRequest httpServletRequest) throws ServerException {
+    public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
 
 
         try {
@@ -24,7 +24,7 @@ public class AddressCommendRead implements Commend {
             address = addressService.selectById(id);
             logger.info("reade" + address);
         } catch (ServiceException e) {
-            throw new ServerException(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
         return new Page("/home.jsp",true,"Success!");
     }

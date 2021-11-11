@@ -18,7 +18,7 @@ public class AddressCommendCreate implements Commend {
 
 
     @Override
-    public Page execute(HttpServletRequest httpServletRequest) throws ServerException {
+    public Page execute(HttpServletRequest httpServletRequest) throws ServiceException{
         try {
             address.setTown("town");
             address.setStreet("street");
@@ -27,7 +27,7 @@ public class AddressCommendCreate implements Commend {
             logger.info("creat"+address);
 
         } catch (ServiceException e) {
-           throw new ServerException(e.getMessage());
+           throw new ServiceException(e.getMessage());
         }
         return new Page("/home.jsp",true,"Success!");
     }

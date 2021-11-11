@@ -1,8 +1,10 @@
 package com.magdy.taxiwebappliction.commend;
 
+import com.magdy.taxiwebappliction.exception.ServiceException;
+
 import javax.servlet.http.HttpServletRequest;
-import java.rmi.ServerException;
+
 
 public interface Commend {
-    Page execute(HttpServletRequest httpServletRequest) throws ServerException;
+    Page execute(HttpServletRequest httpServletRequest) throws ServiceException;
 }

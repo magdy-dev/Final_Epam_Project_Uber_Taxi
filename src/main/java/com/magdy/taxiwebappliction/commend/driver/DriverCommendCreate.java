@@ -17,7 +17,7 @@ public class DriverCommendCreate implements Commend {
     private Driver driver = new Driver();
 
     @Override
-    public Page execute(HttpServletRequest httpServletRequest) throws ServerException {
+    public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         try {
             driver.setName("name");
             driver.setLastName("lastName");
@@ -29,7 +29,7 @@ public class DriverCommendCreate implements Commend {
             logger.info("creat" + driver);
 
         } catch (ServiceException e) {
-            throw new ServerException(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
 
         return new Page("/home.jsp", true, "Success!");

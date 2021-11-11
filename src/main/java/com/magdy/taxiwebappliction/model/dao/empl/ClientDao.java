@@ -139,4 +139,27 @@ public class ClientDao implements DaoInterface<Client> {
         }
         return rewDelete;
     }
+
+    public Client login(String username, String password) throws DaoException {
+        logger.info("GET_CLIENT_BY_userName,Password");
+        Client client = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from client where email=? and password=?")) {
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("last_Name");
+                String phoneNumber = resultSet.getString("phone_Number");
+                long id =resultSet.getLong("id");
+                client = new Client(id, name, lastName, username, password, phoneNumber);
+            }
+
+        } catch (SQLException e) {
+            logger.info(" client can't get by id dao client");
+            throw new DaoException(e.getMessage());
+        }
+        return client;
+    }
 }

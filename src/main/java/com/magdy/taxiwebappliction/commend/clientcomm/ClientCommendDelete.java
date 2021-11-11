@@ -16,14 +16,14 @@ public class ClientCommendDelete implements Commend {
    private Client client= new Client();
 
     @Override
-    public Page execute(HttpServletRequest httpServletRequest) throws ServerException {
+    public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
 
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             boolean client =clientService.deleteById(id);
             logger.info("delete" + client);
         } catch (ServiceException e) {
-            throw new ServerException(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
 
 

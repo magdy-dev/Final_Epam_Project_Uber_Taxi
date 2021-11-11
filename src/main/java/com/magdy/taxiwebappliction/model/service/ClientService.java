@@ -85,4 +85,15 @@ public class ClientService implements ServiceInterface<Client> {
         }
 
     }
+
+    public Client login(String username, String password) throws ServiceException {
+        logger.info("LOGIN PASS");
+        try {
+
+            return clientDao.login(username,password);
+        } catch (DaoException e) {
+            logger.info("can't login  Service client");
+            throw new ServiceException(e.getMessage());
+        }
+    }
 }
