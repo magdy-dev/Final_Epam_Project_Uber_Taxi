@@ -2,21 +2,63 @@ package com.magdy.taxiwebappliction.commend;
 
 public class Page {
 
-    private String url;
-    private boolean redirect;
-    private String message;
+    /**
+     * Common pages.
+     */
+    public static final String LOGIN_PAGE_PATH = "/pages/common/login.jsp";
+    public static final String MAIN_PAGE_PATH = "/pages/common/main.jsp";
+    public static final String REGISTER_PAGE_PATH = "/pages/common/register.jsp";
 
-    public Page(String url, boolean redirect, String message){
-        this.url= url;
-        this.redirect= redirect;
-        this.message= message;
+    /**
+     * taxi pages
+     */
+    public static final String DISPATCHER_PAGE_PATH = "/pages/taxi/dispatcher.jsp";
+    public static final String HISTORY_PAGE_PATH = "/pages/taxi/history.jsp";
+
+    /**
+     *client pages
+     */
+    public static final String ACCEPTED_CLIENT_PAGE_PATH = "/pages/client/orderAccepted.jsp";
+
+    /**
+     *admin pages
+     */
+    public static final String TAXIS_LIST_PAGE_PATH = "/pages/admin/taxisList.jsp";
+    public static final String EDIT_RATE_PAGE_PATH = "/pages/admin/editRate.jsp";
+    public static final String RATE_HISTORY_PAGE_PATH = "/pages/admin/rateHistory.jsp";
+    private static final String NONE_MESSAGE_KEY = "";
+
+    private final String pageUrl;
+    private final boolean isRedirect;
+    private final String messageKey;
+
+    public Page(String pageUrl, boolean isRedirect) {
+        this.pageUrl = pageUrl;
+        this.isRedirect = isRedirect;
+        this.messageKey = NONE_MESSAGE_KEY;
     }
 
-    public String getUrl() {
-        return url;
+    /**
+     * Instantiates a new Page.
+     */
+
+    public Page(String pageUrl, boolean isRedirect, String messageKey) {
+        this.pageUrl = pageUrl;
+        this.isRedirect = isRedirect;
+        this.messageKey = messageKey;
     }
+
+    public String getPageUrl() {
+        return pageUrl;
+    }
+
 
     public boolean isRedirect() {
-        return redirect;
+        return isRedirect;
     }
+
+    public String getMessageKey() {
+        return messageKey;
+    }
+
 }
