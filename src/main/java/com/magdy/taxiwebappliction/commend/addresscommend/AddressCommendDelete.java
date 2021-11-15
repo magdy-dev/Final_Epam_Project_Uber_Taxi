@@ -3,23 +3,23 @@ package com.magdy.taxiwebappliction.commend.addresscommend;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Address;
-import com.magdy.taxiwebappliction.exception.ServiceException;
-import com.magdy.taxiwebappliction.model.service.AddressService;
+import com.magdy.taxiwebappliction.service.ServiceException;
+import com.magdy.taxiwebappliction.service.AddressServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 
 public class AddressCommendDelete implements Commend {
 
-    private AddressService addressService = new AddressService();
-    private static final Logger logger = Logger.getLogger(AddressCommendDelete.class.getName());
+    private AddressServiceImpl addressServiceImpl = new AddressServiceImpl();
     private Address address = new Address();
+    private static final Logger logger = Logger.getLogger(AddressCommendDelete.class.getName());
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
 
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
-            boolean address = addressService.deleteById(id);
+            boolean address = addressServiceImpl.deleteById(id);
             logger.info("delete" + address);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());

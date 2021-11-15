@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend;
 
-import com.magdy.taxiwebappliction.exception.ServiceException;
+import com.magdy.taxiwebappliction.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -3,21 +3,21 @@ package com.magdy.taxiwebappliction.commend.driver;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Driver;
-import com.magdy.taxiwebappliction.exception.ServiceException;
-import com.magdy.taxiwebappliction.model.service.DriverService;
+import com.magdy.taxiwebappliction.service.ServiceException;
+import com.magdy.taxiwebappliction.service.DriverServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
-import java.rmi.ServerException;
 import java.util.logging.Logger;
 
 public class DriverCommendUpdate implements Commend {
 
-    private DriverService driverService = new DriverService();
+
     private static final Logger logger = Logger.getLogger(DriverCommendUpdate.class.getName());
-    private Driver driver = new Driver();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
+        DriverServiceImpl driverServiceImpl = new DriverServiceImpl();
+        Driver driver = new Driver();
         try {
             driver.setName("name");
             driver.setLastName("lastName");
@@ -25,7 +25,7 @@ public class DriverCommendUpdate implements Commend {
             driver.setPassword("password");
             driver.setPhoneNumber("phoneNumber");
             driver.setCarNumber("carNumber");
-            driver = driverService.update(driver);
+            driver = driverServiceImpl.update(driver);
             logger.info("creat" + driver);
         } catch (
                 ServiceException e) {

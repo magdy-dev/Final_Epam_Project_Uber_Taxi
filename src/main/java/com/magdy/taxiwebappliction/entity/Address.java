@@ -3,7 +3,6 @@ package com.magdy.taxiwebappliction.entity;
 import java.util.Objects;
 
 
-
 public class Address {
 
     private long id;

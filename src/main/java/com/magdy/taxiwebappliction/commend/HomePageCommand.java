@@ -1,9 +1,8 @@
 package com.magdy.taxiwebappliction.commend;
 
-import com.magdy.taxiwebappliction.exception.ServiceException;
+import com.magdy.taxiwebappliction.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.rmi.ServerException;
 
 public class HomePageCommand implements Commend{
     @Override

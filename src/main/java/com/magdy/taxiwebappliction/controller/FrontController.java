@@ -3,7 +3,7 @@ package com.magdy.taxiwebappliction.controller;
 import com.magdy.taxiwebappliction.commend.factory.CommandFactory;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.exception.ServiceException;
+import com.magdy.taxiwebappliction.service.ServiceException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -3,8 +3,8 @@ package com.magdy.taxiwebappliction.commend.common;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Client;
-import com.magdy.taxiwebappliction.exception.ServiceException;
-import com.magdy.taxiwebappliction.model.service.ClientService;
+import com.magdy.taxiwebappliction.service.ServiceException;
+import com.magdy.taxiwebappliction.service.ClientServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -14,7 +14,7 @@ public class AccountCommandRegister implements Commend {
     public Page execute(HttpServletRequest httpServletRequest) throws  ServiceException {
 
         Client client = new Client();
-        ClientService clientService = new ClientService();
+        ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
 
         client.setName(httpServletRequest.getParameter("firstname"));
         client.setLastName(httpServletRequest.getParameter("lastname"));
@@ -22,9 +22,9 @@ public class AccountCommandRegister implements Commend {
         client.setEmail(httpServletRequest.getParameter("email"));
         client.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
 
-        client = clientService.save(client);
+        client = clientServiceImpl.save(client);
 
 
-        return new Page("/login.jsp", true, "Success!");
+        return new Page("common/login.jsp", true, "Success!");
     }
 }
