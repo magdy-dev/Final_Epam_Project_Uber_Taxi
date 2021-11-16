@@ -18,7 +18,7 @@
 
     <title>Home</title>
 </head>
-<body >
+<body>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -29,17 +29,23 @@
             <li><a href="pages/common/login.jsp">Login </a></li>
 
         </ul>
-        <form class="navbar-form navbar-left" action="/action_page.php">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" name="search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+
     </div>
 </nav>
 
-
-
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="..." alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="..." alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="..." alt="Third slide">
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

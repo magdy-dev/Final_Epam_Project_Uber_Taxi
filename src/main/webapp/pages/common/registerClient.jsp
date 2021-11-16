@@ -39,7 +39,9 @@
 
   </div>
 </div>
-
+<footer class="container-fluid">
+  <p>TAXI</p>
+</footer>
 
 </body>
 </html>

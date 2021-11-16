@@ -53,23 +53,27 @@
         <div class="col-sm-3 sidenav">
             <h4>Taxi</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="">sign Out</a></li>
-                <li><a href="orderListClient.jsp">My Order List  History </a></li>
-                <li><a href="orderClient.jsp">Order Taxi</a></li>
+                <li class="active"><a href="#section1">sign Out</a></li>
+                <li><a href="orderListDriver.jsp">List Of Orders History</a></li>
+                <li><a href="ClientOrders.jsp">Client Orders </a></li>
             </ul>
             <br>
         </div>
 
         <div class="col-sm-9">
-            <h1><small>complaint</small></h1>
-            <p>Making a complaint about a taxi service<br>
-                If you have a problem with a taxi or taxi driver's behavior, or you believe a vehicle to be unlicensed,
-                report it immediately. If the problem involves a criminal act, report it to the Police Service
-                Complaints
-                If you're unhappy with the fare, quality of vehicle, driving, or behavior of the driver or any other
-                issue, make your complaint to the driver or the taxi operator.
+            <h1><small>Taxi successful</small></h1>
+            <p> become a successful taxi driver<br>
 
-                Explain in detail what went wrong, stay calm, and stick to the facts.</p>
+                A taxi driver driving on a busy motorway
+                Before you do anything else, focus on one thing: licensing.
+                Stay on the right side of the law and ensure all taxis in your fleet are licensed. Customers are
+                unlikely to opt for your cab service if the vehicles lack licenses, as they’ll feel less secure.
+                Make sure all fleet vehicles have their licenses prominently displayed, as this will reassure potential
+                passengers that they’re in safe hands.
+                Next, find dependable taxi fleet insurance cover, suited to your specific needs.
+                Accidents, theft, vandalism, and damage all pose risks to your business investment: your vehicles.
+                You also want to make sure your drivers are covered in the event of an accident or incident in the cab..
+            </p>
             <br><br>
 
             <h4><small>Taxi.....</small></h4>
@@ -81,6 +85,7 @@
                     <li class="list-group-item">Email</li>
                     <li class="list-group-item">Password</li>
                     <li class="list-group-item">Phone Number</li>
+                    <li class="list-group-item">Car Number</li>
                 </ul>
             </div>
             <hr>

@@ -10,7 +10,18 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background-color:black">
 
+<div style="border:20px solid Tomato;margin-top: 5%"></div>
+<div style="margin-top: 10%">
+
+    <h1 style="  text-align:center;margin:auto;font-size:40px;font-weight:bold;
+border-radius: 15px;
+  background: red;
+  padding: 10px;
+  width: 700px;
+  height: 250px;"><br> Opes Page Not Found <br><br>ERROR 500 . . . . . </h1>
+</div>
+<div style="border:20px solid Tomato;margin-top: 5%"></div>
 </body>
 </html>
