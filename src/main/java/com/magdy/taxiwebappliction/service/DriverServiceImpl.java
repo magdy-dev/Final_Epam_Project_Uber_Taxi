@@ -79,4 +79,13 @@ public class DriverServiceImpl extends BaseService implements DriverService {
             throw new ServiceException(e.getMessage());
         }
     }
+
+    public Driver login(String username, String password) throws ServiceException {
+        logger.info("LOGIN PASS");
+        try {
+            return driverDaoImpl.login(username, password);
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
 }

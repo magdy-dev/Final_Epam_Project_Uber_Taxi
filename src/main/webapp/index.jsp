@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Title</title>
 </head>
-<body>
+<body style="background: url('./img/pexels-photo-462867.jpeg'); background-size: cover;">
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -36,7 +36,7 @@
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="./pages/common/login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>

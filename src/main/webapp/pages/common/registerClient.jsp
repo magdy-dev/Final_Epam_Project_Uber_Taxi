@@ -22,13 +22,13 @@
     <!-- Login Form -->
     <form action="${pageContext.request.contextPath}/controller" method="post">
 
-      <input type="text" id="name" class="fadeIn second" name="username" placeholder="Name">
+      <input type="text" id="name" class="fadeIn second" name="firstname" placeholder="Name">
       <input type="text" id="lastname" class="fadeIn third" name="lastname" placeholder="LastName">
       <input type="text" id="phoneNumber" class="fadeIn second" name="phoneNumber" placeholder="phoneNumber">
-      <input type="text" id="login" class="fadeIn second" name="username" placeholder="Email">
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email">
       <input type="text" id="password" class="fadeIn third" name="password" placeholder="Password">
 
-      <input type="text" name="command" value="Register" hidden>
+      <input type="hidden" name="command" value="register" >
       <input type="submit" class="fadeIn fourth" value="Register">
     </form>
 

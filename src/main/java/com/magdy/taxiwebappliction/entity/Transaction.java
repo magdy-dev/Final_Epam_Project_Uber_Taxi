@@ -1,8 +1,9 @@
 package com.magdy.taxiwebappliction.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
     private long id;
     private  boolean cash;

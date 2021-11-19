@@ -18,7 +18,7 @@
 
     <title>Home</title>
 </head>
-<body>
+<body  style="background: url('./img/pexels-photo-462867.jpeg')">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">

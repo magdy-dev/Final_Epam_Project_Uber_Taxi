@@ -157,7 +157,7 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
             preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("last_Name");
                 String phoneNumber = resultSet.getString("phone_Number");

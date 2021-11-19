@@ -22,8 +22,8 @@
         <!-- Login Form -->
         <form action="${pageContext.request.contextPath}/controller" method="post">
             <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="text" name="command" value="login" hidden>
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="hidden" name="command" value="login" >
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 

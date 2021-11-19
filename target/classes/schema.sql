@@ -34,7 +34,7 @@ CREATE TABLE taxi_order
 (
     "id"      bigserial   NOT NULL,
     data      varchar(50) NOT NULL,
-    driver_id bigserial   NOT NULL,
+    driver_id bigserial,
     client_id bigserial   NOT NULL,
     CONSTRAINT PK_29 PRIMARY KEY ("id"),
     CONSTRAINT FK_51 FOREIGN KEY (client_id) REFERENCES client ("id"),

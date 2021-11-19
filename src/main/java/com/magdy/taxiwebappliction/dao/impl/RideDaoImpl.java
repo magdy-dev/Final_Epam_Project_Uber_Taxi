@@ -1,6 +1,5 @@
 package com.magdy.taxiwebappliction.dao.impl;
 
-import com.magdy.taxiwebappliction.dao.Dao;
 import com.magdy.taxiwebappliction.dao.RideDao;
 import com.magdy.taxiwebappliction.entity.Address;
 import com.magdy.taxiwebappliction.entity.Order;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class RideDaoImpl extends BaseDao implements RideDao {
     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(RideDaoImpl.class);
@@ -31,8 +29,8 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_RIDE, Statement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatement.setLong(1, ride.getAddressIdFrom().getId());
-            preparedStatement.setLong(2, ride.getAddressIdTo().getId());
+            preparedStatement.setLong(1, ride.getAddressFrom().getId());
+            preparedStatement.setLong(2, ride.getAddressTo().getId());
             preparedStatement.setLong(3, ride.getOrderId().getId());
             int rewSaved = preparedStatement.executeUpdate();
             if (rewSaved > 0) {
@@ -108,8 +106,8 @@ public class RideDaoImpl extends BaseDao implements RideDao {
         logger.info("UPDATE_RIDE");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RIDE, Statement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatement.setLong(1, ride.getAddressIdFrom().getId());
-            preparedStatement.setLong(2, ride.getAddressIdTo().getId());
+            preparedStatement.setLong(1, ride.getAddressFrom().getId());
+            preparedStatement.setLong(2, ride.getAddressTo().getId());
             preparedStatement.setLong(3, ride.getOrderId().getId());
             preparedStatement.setLong(4, ride.getId());
             preparedStatement.executeUpdate();

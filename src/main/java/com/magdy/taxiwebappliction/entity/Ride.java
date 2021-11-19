@@ -1,8 +1,9 @@
 package com.magdy.taxiwebappliction.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Ride {
+public class Ride  implements Serializable {
 
 
     private long id;
@@ -36,19 +37,19 @@ public class Ride {
         this.id = id;
     }
 
-    public Address getAddressIdFrom() {
+    public Address getAddressFrom() {
         return addressIdFrom;
     }
 
-    public void setAddressIdFrom(Address addressIdFrom) {
+    public void setAddressFrom(Address addressIdFrom) {
         this.addressIdFrom = addressIdFrom;
     }
 
-    public Address getAddressIdTo() {
+    public Address getAddressTo() {
         return addressIdTo;
     }
 
-    public void setAddressIdTo(Address addressIdTo) {
+    public void setAddressTo(Address addressIdTo) {
         this.addressIdTo = addressIdTo;
     }
 
@@ -56,7 +57,7 @@ public class Ride {
         return orderId;
     }
 
-    public void setOrderId(Order orderId) {
+    public void setOrder(Order orderId) {
         this.orderId = orderId;
     }
 

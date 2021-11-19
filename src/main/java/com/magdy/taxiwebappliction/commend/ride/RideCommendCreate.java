@@ -3,7 +3,6 @@ package com.magdy.taxiwebappliction.commend.ride;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendRead;
-import com.magdy.taxiwebappliction.dao.impl.OrderDaoImpl;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 
@@ -59,9 +58,9 @@ public class RideCommendCreate implements Commend {
             order.setClient(client);
             orderService.save(order);
 
-            ride.setAddressIdFrom(addressFrom);
-            ride.setAddressIdTo(addressTo);
-            ride.setOrderId(order);
+            ride.setAddressFrom(addressFrom);
+            ride.setAddressTo(addressTo);
+            ride.setOrder(order);
             rideService.save(ride);
             logger.info("create" + ride);
         } catch (ServiceException e) {

@@ -2,11 +2,12 @@ package com.magdy.taxiwebappliction.commend.order;
 
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendRead;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.logging.Logger;
 
 public class OrderCommendCreate implements Commend {
@@ -15,41 +16,37 @@ public class OrderCommendCreate implements Commend {
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
+        RideServiceImpl rideService = new RideServiceImpl();
         OrderServiceImpl orderService = new OrderServiceImpl();
-        Order order = new Order();
-        DriverServiceImpl driverService = new DriverServiceImpl();
-        Driver driver = new Driver();
-        ClientServiceImpl clientService = new ClientServiceImpl();
-        Client client = new Client();
+        HttpSession session = httpServletRequest.getSession();
+        String fromTown = httpServletRequest.getParameter("from_town");
+        String fromStreet = httpServletRequest.getParameter("from_street");
+
+        String toTown = httpServletRequest.getParameter("to_town");
+        String toStreet = httpServletRequest.getParameter("to_street");
+
+        Client client = (Client) session.getAttribute("client");
 
         try {
-
-            driver.setName("magdy");
-            driver.setLastName("shenoda");
-            driver.setEmail("amamama@.gmail.com");
-            driver.setPassword("12345");
-            driver.setCarNumber("122333bb");
-            driver.setPhoneNumber("123344333");
-            clientService.save(client);
-
-            client.setName("magdyaa");
-            client.setLastName("shenoda");
-            client.setEmail("111amamama@.gmail.com");
-            client.setPassword("12345");
-            client.setPhoneNumber("+122333bb");
-            clientService.save(client);
-
-            order.setData("22.22");
-            order.setDriver(driver);
+            Ride ride = new Ride();
+            Order order = new Order();
             order.setClient(client);
-            orderService.save(order);
-
+            order.setData(new Date().toLocaleString());
+            order = orderService.save(order);
+            ride.setAddressFrom(new Address(fromTown,fromStreet,-1));
+            ride.setAddressTo(new Address(toTown,toStreet,-1));
+            ride.setOrder(order);
+            rideService.save(ride);
+            session.setAttribute("isCash",httpServletRequest.getParameterValues("isCash")[0]);
+            session.setAttribute("from",fromTown + "-" + fromStreet);
+            session.setAttribute("to",toTown + "-" + toStreet);
+            session.setAttribute("message","Order Success!");
             logger.info("create" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 
         }
 
-        return new Page("/home.jsp", true, "Success!");
+        return new Page("/pages/client/orderClient.jsp", true, "Success!");
     }
 }

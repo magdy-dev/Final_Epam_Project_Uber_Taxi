@@ -16,19 +16,24 @@
 
   <title>order</title>
 </head>
-<body style="background-color: gold">
+<body>
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Taxi...</a>
+      <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="">Sign Out</a></li>
-      <li><a href=profileDriver.jsp>Go To My Profile</a></li>
-      <li><a href="ordersDriver.jsp">Client Orders</a></li>
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
     </ul>
-
+    <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
   </div>
 </nav>
 
@@ -39,17 +44,26 @@
 
   <div class="container">
     <h3 class="text-center">List of Order</h3>
+    <hr>
+    <div class="container text-left">
 
+      <a href="<%=request.getContextPath()%>/new" class="btn btn-success">Add
+        New Order</a>
+    </div>
     <br>
     <table class="table table-bordered">
       <thead>
       <tr>
         <th>ID</th>
         <th>Data</th>
-        <th>Client Name</th>
-        <th>Phone Number</th>
-        <th>From</th>
-        <th>To</th>
+        <th>ClientID</th>
+        <th>ClientName</th>
+        <th>ClientPhone</th>
+        <th>DriverId</th>
+        <th>DriverName</th>
+        <th>DriverPhone</th>
+        <th>DriverCarNumber</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -72,7 +86,21 @@
           <td>
             <c:out value="${user.phoneNumber}"/>
           </td>
-
+          <td>
+            <c:out value="${user.id}"/>
+          </td>
+          <td>
+            <c:out value="${user.id}"/>
+          </td>
+          <td>
+            <c:out value="${user.id}"/>
+          </td>
+          <td>
+            <c:out value="${user.id}"/>
+          </td>
+          <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+                  href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+        </tr>
       </c:forEach>
       <!-- } -->
       </tbody>
@@ -80,6 +108,7 @@
     </table>
   </div>
 </div>
+
 
 </body>
 </html>

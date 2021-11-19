@@ -55,7 +55,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#section1">sign Out</a></li>
                 <li><a href="orderListDriver.jsp">List Of Orders History</a></li>
-                <li><a href="ClientOrders.jsp">Client Orders </a></li>
+                <li><a href="ordersDriver.jsp">Client Orders </a></li>
             </ul>
             <br>
         </div>

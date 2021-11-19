@@ -21,6 +21,8 @@ public class RideServiceImpl extends BaseService implements RideService {
     public Ride save(Ride ride) throws ServiceException {
         logger.info("ride saved");
         try {
+            addressDaoImpl.save(ride.getAddressFrom());
+            addressDaoImpl.save(ride.getAddressTo());
             return rideDaoImpl.save(ride);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
@@ -53,12 +55,12 @@ public class RideServiceImpl extends BaseService implements RideService {
             Client client = clientDaoImpl.selectById(clientId);
             order.setDriver(driver);
             order.setClient(client);
-            Address addressIdFrom = ride.getAddressIdFrom();
-            Address addressIdTo = ride.getAddressIdTo();
+            Address addressIdFrom = ride.getAddressFrom();
+            Address addressIdTo = ride.getAddressTo();
             addressIdFrom = addressDaoImpl.selectById(addressIdFrom.getId());
             addressIdTo = addressDaoImpl.selectById(addressIdTo.getId());
-            ride.setAddressIdFrom(addressIdFrom);
-            ride.setAddressIdTo(addressIdTo);
+            ride.setAddressFrom(addressIdFrom);
+            ride.setAddressTo(addressIdTo);
             return ride;
 
 

@@ -33,7 +33,11 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, order.getData());
             preparedStatement.setLong(2, order.getClient().getId());
-            preparedStatement.setLong(3, order.getDriver().getId());
+            if (order.getDriver() != null) {
+                preparedStatement.setLong(3, order.getDriver().getId());
+            }else {
+                preparedStatement.setNull(3,java.sql.Types.NULL);
+            }
 
             int rewSaved = preparedStatement.executeUpdate();
             if (rewSaved > 0) {

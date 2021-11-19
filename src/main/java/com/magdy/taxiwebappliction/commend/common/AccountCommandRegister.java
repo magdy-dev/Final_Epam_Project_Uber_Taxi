@@ -23,8 +23,9 @@ public class AccountCommandRegister implements Commend {
         client.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
 
         client = clientServiceImpl.save(client);
-
-
-        return new Page("common/login.jsp", true, "Success!");
+        if (client == null){
+            return new Page("/pages/common/registerClient.jsp", true, "Not Success!");
+        }
+        return new Page("/pages/common/login.jsp", true, "Success!");
     }
 }

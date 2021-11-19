@@ -22,6 +22,8 @@ public class DriverDaoImpl extends BaseDao implements DriverDao {
     private static final String SELECT_ALL_DRIVER = "select * from driver";
     private static final String UPDATE_DRIVER = "update driver set name=?,last_Name=?,car_Number=?,email=?,password=?,phone_Number=? where id=?";
     private static final String DELETE_DRIVER = "delete from driver where id=?";
+    private static final String LOGIN_RIDE = "select * from driver where email=? and password=?";
+
 
     @Override
     public Driver save(Driver driver) throws DaoException {
@@ -144,5 +146,28 @@ public class DriverDaoImpl extends BaseDao implements DriverDao {
 
         }
         return rewDelete;
+    }
+
+    public Driver login(String username, String password) throws DaoException {
+
+        logger.info("GET_CLIENT_BY_userName,Password");
+        Driver driver = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(LOGIN_RIDE)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                long id = resultSet.getLong("id");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("last_name");
+                String carNumber = resultSet.getString("car_Number");
+                String phoneNumber = resultSet.getString("phone_Number");
+                driver = new Driver(id, name, lastName, carNumber, username, password, phoneNumber);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
+        return driver;
     }
 }

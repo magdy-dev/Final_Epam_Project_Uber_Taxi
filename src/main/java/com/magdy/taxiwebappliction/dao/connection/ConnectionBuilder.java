@@ -1,11 +1,13 @@
 package com.magdy.taxiwebappliction.dao.connection;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public class ConnectionBuilder extends BaseDao {
+public class ConnectionBuilder{
 
 
     private static final Logger logger = Logger.getLogger(ConnectionBuilder.class.getName());
