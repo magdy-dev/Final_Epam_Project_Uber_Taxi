@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
     <title>Profile</title>
@@ -15,30 +16,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
         .row.content {
             height: 1500px
         }
 
-        /* Set gray background color and 100% height */
-        .sidenav {
-            background-color: #f1f1f1;
-            height: 100%;
+        {
+            background-color: #f1f1f1
+        ;
+            height: 100%
+        ;
         }
-
-        /* Set black background color, white text and some padding */
         footer {
             background-color: #555;
             color: white;
             padding: 15px;
         }
 
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
+        @media screen and (max-width: 767px) { {
+            height: auto;
+            padding: 15px;
+        }
 
             .row.content {
                 height: auto;
@@ -50,15 +47,7 @@
 
 <div class="container-fluid">
     <div class="row content">
-        <div class="col-sm-3 sidenav">
-            <h4>Taxi</h4>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="">sign Out</a></li>
-                <li><a href="orderListClient.jsp">My Order List  History </a></li>
-                <li><a href="orderClient.jsp">Order Taxi</a></li>
-            </ul>
-            <br>
-        </div>
+        <tag:userMenu/>
 
         <div class="col-sm-9">
             <h1><small>complaint</small></h1>
@@ -74,13 +63,13 @@
 
             <h4><small>Taxi.....</small></h4>
             <hr>
-            <div class="container">
+            <div class="container"  action="${pageContext.request.contextPath}/controller">
                 <ul class="list-group" id="myList">
-                    <li class="list-group-item">First Name</li>
-                    <li class="list-group-item">Last Name</li>
-                    <li class="list-group-item">Email</li>
-                    <li class="list-group-item">Password</li>
-                    <li class="list-group-item">Phone Number</li>
+                    <li class="list-group-item">First Name :${sessionScope.client.name}</li>
+                    <li class="list-group-item">Last Name  :${sessionScope.client.lastName}</li>
+                    <li class="list-group-item">Email      :${sessionScope.client.email}</li>
+                    <li class="list-group-item">Password   :${sessionScope.client.password}</li>
+                    <li class="list-group-item">Phone Number:${sessionScope.client.phoneNumber}</li>
                 </ul>
             </div>
             <hr>

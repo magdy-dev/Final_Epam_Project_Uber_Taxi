@@ -14,20 +14,14 @@
 <body>
 <div class="wrapper fadeInDown">
     <div id="formContent"><br>
-        <!-- Tabs Titles -->
-
-
-      <a class="inactive underlineHover" href="registerClient.jsp">Register Client   </a><br>
+        <a class="inactive underlineHover" href="registerClient.jsp">Register Client </a><br>
         <a class="inactive underlineHover" href="registerDriver.jsp">Register Driver </a>
-        <!-- Login Form -->
         <form action="${pageContext.request.contextPath}/controller" method="post">
             <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="hidden" name="command" value="login" >
+            <input type="hidden" name="command" value="login">
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
-
-        <!-- Remind Passowrd -->
         <div id="formFooter">
             <a class="underlineHover" href="#">Forgot Password?</a>
         </div>

@@ -7,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+
 <html>
 <head>
 
@@ -20,28 +22,7 @@
     <title>Title</title>
 </head>
 <body style="background: gold">
-<nav class="navbar navbar-inverse">
-    <%
-        Client client = (Client) session.getAttribute("client");
-        if (null == client) {
-            session.setAttribute("errorMessage", "Login Failed ");
-            response.sendRedirect("/taxiwebappliction/index.jsp");
-        }
-    %>
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Taxi...</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="orderListClient.jsp">Order Lise History</a></li>
-            <li><a href="profileClient.jsp">My Profile</a></li>
-            <li><a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a></li>
-        </ul>
-
-    </div>
-</nav>
-
+<tag:userMenu/>
 <div class="container">
     <div class="container">
         <br>
@@ -49,10 +30,7 @@
         <div class="container col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <form action="${pageContext.request.contextPath}/controller">
-                        <c:if test="${sessionScope.message != null}">
-                            ${sessionScope.message}
-                        </c:if>
+                    <form action="${pageContext.request.contextPath}/controller"><c:if test="${sessionScope.message != null}">${sessionScope.message}</c:if>
                         <fieldset class="form-group">
                             <label>From where town</label> <input type="text" class="form-control" name="from_town"
                                                              required="required">
@@ -82,20 +60,10 @@
                     <div class="jumbotron">
                         <h1 class="display-4">My Order</h1>
                         <hr class="my-4">
-                        <h3 class="lead">Time: <%= (new java.util.Date()).toLocaleString()%>
-                        </h3>
-                        <h3 class="lead">Cash:
-                            <c:if test="${sessionScope.isCash != null}">
-                                ${sessionScope.isCash}
-                            </c:if></h3>
-                        <h3 class="lead">From Where:
-                            <c:if test="${sessionScope.from != null}">
-                                ${sessionScope.from}
-                            </c:if></h3>
-                        <h3 class="lead">To Where:
-                            <c:if test="${sessionScope.to != null}">
-                                ${sessionScope.to}
-                            </c:if></h3>
+                        <h3 class="lead">Time: <%= (new java.util.Date()).toLocaleString()%></h3>
+                        <h3 class="lead">Cash:<c:if test="${sessionScope.isCash != null}">${sessionScope.isCash}</c:if></h3>
+                        <h3 class="lead">From Where:<c:if test="${sessionScope.from != null}">${sessionScope.from}</c:if></h3>
+                        <h3 class="lead">To Where:<c:if test="${sessionScope.to != null}">${sessionScope.to}</c:if></h3>
 
 
                         </p>

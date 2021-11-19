@@ -31,7 +31,7 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
             preparedStatement.setLong(1, ride.getAddressFrom().getId());
             preparedStatement.setLong(2, ride.getAddressTo().getId());
-            preparedStatement.setLong(3, ride.getOrderId().getId());
+            preparedStatement.setLong(3, ride.getOrder().getId());
             int rewSaved = preparedStatement.executeUpdate();
             if (rewSaved > 0) {
                 try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
@@ -66,9 +66,9 @@ public class RideDaoImpl extends BaseDao implements RideDao {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                long addressIdFrom = resultSet.getLong("address_id_from ");
-                long addressIdTo = resultSet.getLong("address_id_to ");
-                long orderId = resultSet.getLong("order_id ");
+                long addressIdFrom = resultSet.getLong("address_id_from");
+                long addressIdTo = resultSet.getLong("address_id_to");
+                long orderId = resultSet.getLong("order_id");
 
                 ride = new Ride(id, new Address(addressIdFrom), new Address(addressIdTo), new Order(orderId));
 
@@ -87,9 +87,9 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                long addressIdFrom = resultSet.getLong("address_id_from ");
-                long addressIdTo = resultSet.getLong("address_id_to ");
-                long orderId = resultSet.getLong("order_id ");
+                long addressIdFrom = resultSet.getLong("address_id_from");
+                long addressIdTo = resultSet.getLong("address_id_to");
+                long orderId = resultSet.getLong("order_id");
                 long id = resultSet.getLong("id");
 
                 rideList.add(new Ride(id, new Address(addressIdFrom), new Address(addressIdTo), new Order(orderId)));
@@ -108,7 +108,7 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
             preparedStatement.setLong(1, ride.getAddressFrom().getId());
             preparedStatement.setLong(2, ride.getAddressTo().getId());
-            preparedStatement.setLong(3, ride.getOrderId().getId());
+            preparedStatement.setLong(3, ride.getOrder().getId());
             preparedStatement.setLong(4, ride.getId());
             preparedStatement.executeUpdate();
             return ride;

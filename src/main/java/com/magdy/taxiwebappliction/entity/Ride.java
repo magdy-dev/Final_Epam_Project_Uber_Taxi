@@ -7,24 +7,24 @@ public class Ride  implements Serializable {
 
 
     private long id;
-    private Address addressIdFrom;
-    private Address addressIdTo;
-    private Order orderId;
+    private Address addressFrom;
+    private Address addressTo;
+    private Order order;
 
     public Ride() {
     }
 
-    public Ride(long id, Address addressIdFrom, Address addressIdTo, Order orderId) {
+    public Ride(long id, Address addressFrom, Address addressTo, Order order) {
         this.id = id;
-        this.addressIdFrom = addressIdFrom;
-        this.addressIdTo = addressIdTo;
-        this.orderId = orderId;
+        this.addressFrom = addressFrom;
+        this.addressTo = addressTo;
+        this.order = order;
     }
 
-    public Ride(Address addressIdFrom, Address addressIdTo, Order orderId) {
-        this.addressIdFrom = addressIdFrom;
-        this.addressIdTo = addressIdTo;
-        this.orderId = orderId;
+    public Ride(Address addressFrom, Address addressTo, Order order) {
+        this.addressFrom = addressFrom;
+        this.addressTo = addressTo;
+        this.order = order;
     }
 
 
@@ -38,27 +38,27 @@ public class Ride  implements Serializable {
     }
 
     public Address getAddressFrom() {
-        return addressIdFrom;
+        return addressFrom;
     }
 
     public void setAddressFrom(Address addressIdFrom) {
-        this.addressIdFrom = addressIdFrom;
+        this.addressFrom = addressIdFrom;
     }
 
     public Address getAddressTo() {
-        return addressIdTo;
+        return addressTo;
     }
 
     public void setAddressTo(Address addressIdTo) {
-        this.addressIdTo = addressIdTo;
+        this.addressTo = addressIdTo;
     }
 
-    public Order getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
     public void setOrder(Order orderId) {
-        this.orderId = orderId;
+        this.order = orderId;
     }
 
     @Override
@@ -66,21 +66,21 @@ public class Ride  implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ride ride = (Ride) o;
-        return id == ride.id && Objects.equals(addressIdFrom, ride.addressIdFrom) && Objects.equals(addressIdTo, ride.addressIdTo) && Objects.equals(orderId, ride.orderId);
+        return id == ride.id && Objects.equals(addressFrom, ride.addressFrom) && Objects.equals(addressTo, ride.addressTo) && Objects.equals(order, ride.order);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, addressIdFrom, addressIdTo, orderId);
+        return Objects.hash(id, addressFrom, addressTo, order);
     }
 
     @Override
     public String toString() {
         return "Ride{" +
                 "id=" + id +
-                ", addressIdFrom=" + addressIdFrom +
-                ", addressIdTo=" + addressIdTo +
-                ", orderId=" + orderId +
+                ", addressIdFrom=" + addressFrom +
+                ", addressIdTo=" + addressTo +
+                ", orderId=" + order +
                 '}';
     }
 }

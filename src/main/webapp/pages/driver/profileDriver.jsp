@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
     <title>Profile</title>
@@ -50,15 +51,7 @@
 
 <div class="container-fluid">
     <div class="row content">
-        <div class="col-sm-3 sidenav">
-            <h4>Taxi</h4>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#section1">sign Out</a></li>
-                <li><a href="orderListDriver.jsp">List Of Orders History</a></li>
-                <li><a href="ordersDriver.jsp">Client Orders </a></li>
-            </ul>
-            <br>
-        </div>
+        <tag:userMenu/>
 
         <div class="col-sm-9">
             <h1><small>Taxi successful</small></h1>
@@ -78,14 +71,14 @@
 
             <h4><small>Taxi.....</small></h4>
             <hr>
-            <div class="container">
+            <div class="container" action="${pageContext.request.contextPath}/controller">
                 <ul class="list-group" id="myList">
-                    <li class="list-group-item">First Name</li>
-                    <li class="list-group-item">Last Name</li>
-                    <li class="list-group-item">Email</li>
-                    <li class="list-group-item">Password</li>
-                    <li class="list-group-item">Phone Number</li>
-                    <li class="list-group-item">Car Number</li>
+                    <li class="list-group-item">First Name   : ${sessionScope.driver.name}</li>
+                    <li class="list-group-item">Last Name    : ${sessionScope.driver.lastName}</li>
+                    <li class="list-group-item">Email        : ${sessionScope.driver.email}</li>
+                    <li class="list-group-item">Password     : ${sessionScope.driver.password}</li>
+                    <li class="list-group-item">Phone Number : ${sessionScope.driver.phoneNumber}</li>
+                    <li class="list-group-item">Car Number   : ${sessionScope.driver.carNumber}</li>
                 </ul>
             </div>
             <hr>

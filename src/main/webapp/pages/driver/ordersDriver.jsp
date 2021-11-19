@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <html>
 <head>
 
@@ -19,32 +23,9 @@
     <title>Title</title>
 </head>
 <body style="background: gold">
-
-<nav class="navbar navbar-inverse">
-    <%
-        Driver driver = (Driver) session.getAttribute("driver");
-        if (null == driver) {
-            session.setAttribute("errorMessage", "Login Failed ");
-            response.sendRedirect("/taxiwebappliction/index.jsp");
-        }
-    %>
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Taxi...</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="">Sign Out</a></li>
-            <li><a href=profileDriver.jsp>Go To My Profile</a></li>
-            <li><a href="orderListDriver.jsp">Order List History</a></li>
-
-        </ul>
-
-    </div>
-</nav>
-
+<tag:userMenu/>
 
 <div class="row">
-    <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
     <div class="container">
         <h3 class="text-center">All Clients Orders</h3>
@@ -53,46 +34,29 @@
         <table class="table table-bordered">
             <thead>
             <tr>
+                <th>Client Name</th>
+                <th>Client Number</th>
                 <th>From where</th>
                 <th>To Where</th>
-
                 <th>Time</th>
-                <th>Cash</th>
-                <th>Price</th>
                 <th>Action</th>
 
             </tr>
             </thead>
             <tbody>
-            <!--   for (Todo todo: todos) {  -->
-            <c:forEach var="user" items="${listUser}">
-
+            <c:forEach var="ride" items="${sessionScope.rides}">
                 <tr>
-                    <td>
-                        <c:out value="${user.id}"/>
+                    <td><c:out value="${ride.order.client.name}"/></td>
+                    <td><c:out value="${ride.order.client.phoneNumber}"/></td>
+                    <td><c:out value="${ride.addressFrom.town } / ${ride.addressFrom.street}"/></td>
+                    <td><c:out value="${ride.addressTo.town  } / ${ride.addressTo.street}"/></td>
+                    <td><c:out value="${ride.order.data}"/></td>
+                    <td><a href="${pageContext.request.contextPath}/controller?rideId=${ride.id}&orderId=${ride.order.id}&command=acceptOrder">Accept</a>
                     </td>
-                    <td>
-                        <c:out value="${user.name}"/>
-                    </td>
-
-                    <td>
-                        <c:out value="${user.password}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.phoneNumber}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.phoneNumber}"/>
-                    </td>
-                    </td>
-                    <td><a href="edit?id=<c:out value='${user.id}' />">Accept</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
-                            href="delete?id=<c:out value='${user.id}' />">Cancel</a></td>
                 </tr>
 
             </c:forEach>
-            <!-- } -->
             </tbody>
-
         </table>
     </div>
 </div>

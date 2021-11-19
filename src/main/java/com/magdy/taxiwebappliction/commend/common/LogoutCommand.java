@@ -23,7 +23,7 @@ public class LogoutCommand implements Commend {
         session.removeAttribute("from");
         session.removeAttribute("to");
         session.removeAttribute("message");
-
+        session.removeAttribute("rides");
 
         return new Page("/index.jsp", true, "Success!");
     }

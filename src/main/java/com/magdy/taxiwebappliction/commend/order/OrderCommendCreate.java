@@ -37,7 +37,12 @@ public class OrderCommendCreate implements Commend {
             ride.setAddressTo(new Address(toTown,toStreet,-1));
             ride.setOrder(order);
             rideService.save(ride);
-            session.setAttribute("isCash",httpServletRequest.getParameterValues("isCash")[0]);
+            String[] isCash = httpServletRequest.getParameterValues("isCash");
+            if (isCash != null && isCash.length > 0){
+                session.setAttribute("isCash", isCash[0]);
+            }else {
+                session.setAttribute("isCash", "card");
+            }
             session.setAttribute("from",fromTown + "-" + fromStreet);
             session.setAttribute("to",toTown + "-" + toStreet);
             session.setAttribute("message","Order Success!");

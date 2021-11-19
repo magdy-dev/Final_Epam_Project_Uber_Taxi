@@ -1,7 +1,6 @@
 package com.magdy.taxiwebappliction.dao.impl;
 
 
-import com.magdy.taxiwebappliction.dao.Dao;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import com.magdy.taxiwebappliction.dao.OrderDao;
 import com.magdy.taxiwebappliction.entity.Client;
@@ -15,7 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class OrderDaoImpl extends BaseDao implements OrderDao {
 
@@ -35,8 +33,8 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             preparedStatement.setLong(2, order.getClient().getId());
             if (order.getDriver() != null) {
                 preparedStatement.setLong(3, order.getDriver().getId());
-            }else {
-                preparedStatement.setNull(3,java.sql.Types.NULL);
+            } else {
+                preparedStatement.setNull(3, java.sql.Types.NULL);
             }
 
             int rewSaved = preparedStatement.executeUpdate();
@@ -78,7 +76,8 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
                 long driverId = resultSet.getLong("driver_id");
                 long clintId = resultSet.getLong("client_id");
 
-                order = new Order(id, data, new Client(clintId), new Driver(driverId));
+                Driver driver = driverId != 0 ? new Driver(driverId) : null;
+                order = new Order(id, data, new Client(clintId), driver);
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
@@ -135,5 +134,16 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             throw new DaoException(e.getMessage());
         }
         return rewDelete;
+    }
+
+    public void accept(long driverId, Long orderId) throws DaoException {
+        logger.info("UPDATE_ORDER");
+        try (PreparedStatement preparedStatement = connection.prepareStatement("update taxi_order set driver_id=? where id=?")) {
+            preparedStatement.setLong(1, driverId);
+            preparedStatement.setLong(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
     }
 }

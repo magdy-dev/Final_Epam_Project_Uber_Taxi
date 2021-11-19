@@ -1,5 +1,6 @@
 package com.magdy.taxiwebappliction.service;
 
+import com.magdy.taxiwebappliction.dao.impl.OrderDaoImpl;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import com.magdy.taxiwebappliction.dao.impl.DriverDaoImpl;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 public class DriverServiceImpl extends BaseService implements DriverService {
     private static final Logger logger = Logger.getLogger(DriverServiceImpl.class.getName());
     private DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
+    private OrderDaoImpl orderDao = new OrderDaoImpl();
     private Driver driver = new Driver();
 
 
@@ -84,6 +86,14 @@ public class DriverServiceImpl extends BaseService implements DriverService {
         logger.info("LOGIN PASS");
         try {
             return driverDaoImpl.login(username, password);
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    public void accept(Driver driver, Long orderId) throws ServiceException {
+        try {
+            orderDao.accept(driver.getId(),orderId);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }

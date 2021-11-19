@@ -7,6 +7,7 @@ import com.magdy.taxiwebappliction.dao.DaoException;
 import org.apache.logging.log4j.LogManager;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RideServiceImpl extends BaseService implements RideService {
@@ -47,9 +48,9 @@ public class RideServiceImpl extends BaseService implements RideService {
             if (ride==null){
                 return null;
             }
-            long orderId = ride.getOrderId().getId();
+            long orderId = ride.getOrder().getId();
             Order order = orderDaoImpl.selectById(orderId);
-            long driverId = order.getDriver().getId();
+            long driverId = order.getDriver() != null ? order.getDriver().getId() : 0;
             long clientId = order.getClient().getId();
             Driver driver = driverDaoImpl.selectById(driverId);
             Client client = clientDaoImpl.selectById(clientId);
@@ -61,6 +62,7 @@ public class RideServiceImpl extends BaseService implements RideService {
             addressIdTo = addressDaoImpl.selectById(addressIdTo.getId());
             ride.setAddressFrom(addressIdFrom);
             ride.setAddressTo(addressIdTo);
+            ride.setOrder(order);
             return ride;
 
 
@@ -74,7 +76,14 @@ public class RideServiceImpl extends BaseService implements RideService {
     public List<Ride> selectAll() throws ServiceException {
         logger.info("ride selectAll");
         try {
-            return rideDaoImpl.selectAll();
+            List<Ride> rides = rideDaoImpl.selectAll();
+            List<Ride> res = new ArrayList<>();
+            for (Ride r:rides){
+                if (r.getOrder().getDriver() == null){
+                    res.add(selectById(r.getId()));
+                }
+            }
+            return res;
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
