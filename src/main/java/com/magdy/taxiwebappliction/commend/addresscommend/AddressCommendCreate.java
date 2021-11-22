@@ -19,8 +19,8 @@ public class AddressCommendCreate implements Commend {
         AddressServiceImpl addressServiceImpl = new AddressServiceImpl();
         Address address = new Address();
         try {
-            address.setTown("town");
-            address.setStreet("street");
+            address.setTown(httpServletRequest.getParameter("town"));
+            address.setStreet(httpServletRequest.getParameter("street"));
             address.setBuilding(2);
             address= addressServiceImpl.save(address);
             logger.info("creat"+address);

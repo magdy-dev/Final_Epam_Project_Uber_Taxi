@@ -20,11 +20,11 @@ public class ClientCommendCreate implements Commend {
         Client client = new Client();
         try {
 
-            client.setName("name");
-            client.setLastName("lastName");
-            client.setEmail("email");
-            client.setPassword("password");
-            client.setPhoneNumber("phoneNumber");
+            client.setName(httpServletRequest.getParameter("name"));
+            client.setLastName(httpServletRequest.getParameter("lastName"));
+            client.setEmail(httpServletRequest.getParameter("email"));
+            client.setPassword(httpServletRequest.getParameter("password"));
+            client.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
             client = clientServiceImpl.save(client);
             logger.info("creat" + client);
 

@@ -21,11 +21,11 @@ public class ClientCommendUpdate implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
 
-            client.setName("name");
-            client.setLastName("lastName");
-            client.setEmail("email");
-            client.setPassword("password");
-            client.setPhoneNumber("phoneNumber");
+            client.setName(httpServletRequest.getParameter("name"));
+            client.setLastName(httpServletRequest.getParameter("lastName"));
+            client.setEmail(httpServletRequest.getParameter("email"));
+            client.setPassword(httpServletRequest.getParameter("password"));
+            client.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
             client = clientServiceImpl.update(client);
             logger.info("update" + client);
 

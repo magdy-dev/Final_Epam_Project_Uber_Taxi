@@ -19,8 +19,8 @@ public class AddressCommendUpdate implements Commend {
         AddressServiceImpl addressServiceImpl = new AddressServiceImpl();
 
         try {
-            address.setTown("town");
-            address.setStreet("street");
+            address.setTown(httpServletRequest.getParameter("town"));
+            address.setStreet(httpServletRequest.getParameter("street"));
             address.setBuilding(2);
             address = addressServiceImpl.update(address);
             logger.info("update" + address);

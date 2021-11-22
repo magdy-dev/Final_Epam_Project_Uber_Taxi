@@ -42,23 +42,26 @@
       </thead>
       <tbody>
       <!--   for (Todo todo: todos) {  -->
-      <c:forEach var="user" items="${listUser}">
+      <c:forEach action="${pageContext.request.contextPath}/controller">
 
         <tr>
           <td>
-            <c:out value="${user.id}"/>
+            <c:out value="${sessionScope.client.id}"/>
           </td>
           <td>
-            <c:out value="${user.name}"/>
+            <%= (new java.util.Date()).toLocaleString()%>
           </td>
           <td>
-            <c:out value="${user.email}"/>
+            <c:out value="${sessionScope.client.email}"/>
           </td>
           <td>
-            <c:out value="${user.password}"/>
+            <c:out value="${sessionScope.client.phoneNumber}"/>
           </td>
           <td>
-            <c:out value="${user.phoneNumber}"/>
+            <c:out value="${sessionScope.from}"/>
+          </td>
+          <td>
+            <c:out value="${sessionScope.to}"/>
           </td>
 
       </c:forEach>

@@ -16,12 +16,12 @@
 
 <!--    <filter>-->
 <!--        <filter-name>commandFilter</filter-name>-->
-<!--        <filter-class>com.epam.uber.filter.CommandFilter</filter-class>-->
+<!--        <filter-class>com.magdy.taxiwebappliction.controller.filter.CommendFilter</filter-class>-->
 <!--    </filter>-->
 
 <!--    <filter-mapping>-->
 <!--        <filter-name>commandFilter</filter-name>-->
-<!--        <url-pattern>/*</url-pattern>-->
+<!--        <url-pattern>/controller/*</url-pattern>-->
 <!--    </filter-mapping>-->
 
     <servlet-mapping>

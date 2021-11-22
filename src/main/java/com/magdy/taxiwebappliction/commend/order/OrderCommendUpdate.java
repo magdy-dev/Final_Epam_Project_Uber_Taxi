@@ -24,22 +24,22 @@ public class OrderCommendUpdate implements Commend {
         Client client = new Client();
         try {
 
-            driver.setName("magdy");
-            driver.setLastName("shenoda");
-            driver.setEmail("amamama@.gmail.com");
-            driver.setPassword("12345");
-            driver.setCarNumber("122333bb");
-            driver.setPhoneNumber("123344333");
+            driver.setName(httpServletRequest.getParameter("magdy"));
+            driver.setLastName(httpServletRequest.getParameter("shenoda"));
+            driver.setEmail(httpServletRequest.getParameter("amamama@.gmail.com"));
+            driver.setPassword(httpServletRequest.getParameter("12345"));
+            driver.setCarNumber(httpServletRequest.getParameter("122333bb"));
+            driver.setPhoneNumber(httpServletRequest.getParameter("123344333"));
             clientService.save(client);
 
-            client.setName("magdyaa");
-            client.setLastName("shenoda");
-            client.setEmail("111amamama@.gmail.com");
-            client.setPassword("12345");
-            client.setPhoneNumber("+122333bb");
+            client.setName(httpServletRequest.getParameter("magdyaa"));
+            client.setLastName(httpServletRequest.getParameter("shenoda"));
+            client.setEmail(httpServletRequest.getParameter("111amamama@.gmail.com"));
+            client.setPassword(httpServletRequest.getParameter("12345"));
+            client.setPhoneNumber(httpServletRequest.getParameter("+122333bb"));
             clientService.save(client);
 
-            order.setData("22.22");
+            order.setData(httpServletRequest.getParameter("22.22"));
             order.setDriver(driver);
             order.setClient(client);
             orderService.update(order);

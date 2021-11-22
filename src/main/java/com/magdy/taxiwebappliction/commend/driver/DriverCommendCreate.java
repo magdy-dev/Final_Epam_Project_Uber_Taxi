@@ -19,12 +19,12 @@ public class DriverCommendCreate implements Commend {
         DriverServiceImpl driverServiceImpl = new DriverServiceImpl();
         Driver driver = new Driver();
         try {
-            driver.setName("name");
-            driver.setLastName("lastName");
-            driver.setEmail("email");
-            driver.setPassword("password");
-            driver.setPhoneNumber("phoneNumber");
-            driver.setCarNumber("carNumber");
+            driver.setName(httpServletRequest.getParameter("name"));
+            driver.setLastName(httpServletRequest.getParameter("lastName"));
+            driver.setEmail(httpServletRequest.getParameter("email"));
+            driver.setPassword(httpServletRequest.getParameter("password"));
+            driver.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
+            driver.setCarNumber(httpServletRequest.getParameter("carNumber"));
             driver = driverServiceImpl.save(driver);
             logger.info("creat" + driver);
 
