@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <html>
 <head>
@@ -40,52 +42,26 @@
                 <th>DriverCarNumber</th>
                 <th>From</th>
                 <th>To</th>
-                <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <!--   for (Todo todo: todos) {  -->
-            <c:forEach>
+            <c:forEach var="ride"  items="${sessionScope.ridesClientHistory}">
                 <tr>
-                    <td>
-                        <c:out value="${sessionScope.order.id}"/>
-                    </td>
-                    <td>
-                        <%= (new java.util.Date()).toLocaleString()%>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.driver.id}"/>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.driver.name}"/>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.driver.phoneNumber}"/>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.driver.carNumber}"/>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.from}"/>
-                    </td>
-                    <td>
-                        <c:out value="${sessionScope.to}"/>
-                    </td>
-
-                    <td>
-                        <a href="edit?id=<c:out value='${sessionScope.order.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${sessionScope.order.id}' />">Delete</a>
-                    </td>
-
+                    <td><c:out value="${ride.order.id}"/></td>
+                    <td><c:out value="${ride.order.data}"/></td>
+                    <td><c:out value="${ride.order.driver.id}"/></td>
+                    <td><c:out value="${ride.order.driver.name } / ${ride.order.driver.lastName}"/></td>
+                    <td><c:out value="${ride.order.driver.phoneNumber }"/></td>
+                    <td><c:out value="${ride.order.driver.carNumber }"/></td>
+                    <td><c:out value="${ride.addressFrom.town } / ${ride.addressFrom.street}"/></td>
+                    <td><c:out value="${ride.addressTo.town  } / ${ride.addressTo.street}"/></td>
                 </tr>
+
             </c:forEach>
-            <!-- } -->
             </tbody>
 
         </table>
     </div>
 </div>
-
-
 </body>
 </html>

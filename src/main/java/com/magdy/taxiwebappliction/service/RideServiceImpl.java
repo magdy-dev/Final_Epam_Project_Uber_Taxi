@@ -78,9 +78,47 @@ public class RideServiceImpl extends BaseService implements RideService {
         try {
             List<Ride> rides = rideDaoImpl.selectAll();
             List<Ride> res = new ArrayList<>();
+            System.out.println(rides.toString());
             for (Ride r:rides){
-                if (r.getOrder().getDriver() == null){
-                    res.add(selectById(r.getId()));
+                Ride ride = selectById(r.getId());
+                if (ride.getOrder().getDriver() == null){
+                    res.add(ride);
+                }
+            }
+            return res;
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    public List<Ride> selectAllByDriverId(Long driverId) throws ServiceException {
+        logger.info("ride selectAll by driver Id");
+        try {
+            List<Ride> rides = rideDaoImpl.selectAll();
+            System.out.println("driver "+rides.toString());
+            List<Ride> res = new ArrayList<>();
+            for (Ride r:rides){
+                Ride ride = selectById(r.getId());
+                if (ride.getOrder().getDriver() != null && ride.getOrder().getDriver().getId() == driverId){
+                    res.add(ride);
+                }
+            }
+            return res;
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    public List<Ride> selectAllByClientId(Long clientId) throws ServiceException {
+        logger.info("ride selectAll by driver Id");
+        try {
+            List<Ride> rides = rideDaoImpl.selectAll();
+            System.out.println("driver "+rides.toString());
+            List<Ride> res = new ArrayList<>();
+            for (Ride r:rides){
+                Ride ride = selectById(r.getId());
+                if (ride.getOrder().getClient().getId() == clientId && ride.getOrder().getDriver() != null){
+                    res.add(ride);
                 }
             }
             return res;

@@ -24,6 +24,8 @@ public class LogoutCommand implements Commend {
         session.removeAttribute("to");
         session.removeAttribute("message");
         session.removeAttribute("rides");
+        session.removeAttribute("ridesDriverHistory");
+
 
         return new Page("/index.jsp", true, "Success!");
     }

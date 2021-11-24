@@ -63,24 +63,53 @@
 
             <h4><small>Taxi.....</small></h4>
             <hr>
-            <div class="container"  action="${pageContext.request.contextPath}/controller">
+            <div class="container" action="${pageContext.request.contextPath}/controller">
                 <ul class="list-group" id="myList">
                     <li class="list-group-item">First Name :${sessionScope.client.name}</li>
-                    <li class="list-group-item">Last Name  :${sessionScope.client.lastName}</li>
-                    <li class="list-group-item">Email      :${sessionScope.client.email}</li>
-                    <li class="list-group-item">Password   :${sessionScope.client.password}</li>
+                    <li class="list-group-item">Last Name :${sessionScope.client.lastName}</li>
+                    <li class="list-group-item">Email :${sessionScope.client.email}</li>
+                    <li class="list-group-item">Password :${sessionScope.client.password}</li>
                     <li class="list-group-item">Phone Number:${sessionScope.client.phoneNumber}</li>
                 </ul>
             </div>
             <hr>
 
-            <h4>Leave a Comment:</h4>
+            <h4>Welcome To Minsk:</h4>
             <form role="form">
-                <div class="form-group">
-                    <textarea class="form-control" rows="7" required></textarea>
 
+                <div class="container">
+                    <h2>Taxi Minsk</h2>
+                    <p>we wish for you happy tribe with us </p>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a>
+                                    <img src="${pageContext.request.contextPath}/img/pexels-photo-5746988.jpeg"
+                                         alt="Lights" style="width:100%">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a>
+                                    <img src="${pageContext.request.contextPath}/img/pexels-photo-70441.jpeg"
+                                         alt="Nature" style="width:100%">
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <a>
+                                    <img src="${pageContext.request.contextPath}/img/photo-1597462658709-b2616ae8f2ce.jpg"
+                                         alt="Nature" style="width:100%">
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
             </form>
 
         </div>

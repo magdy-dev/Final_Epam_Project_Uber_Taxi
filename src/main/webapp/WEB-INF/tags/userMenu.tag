@@ -23,8 +23,10 @@
                     <c:choose>
                         <c:when test="${sessionScope.client != null }">
                             <li ><a
+                                    href="${pageContext.request.contextPath}/pages/common/about.jsp">About</a></li>
+                            <li ><a
                                     href="${pageContext.request.contextPath}/pages/client/orderClient.jsp">Home</a></li>
-                            <li><a href="${pageContext.request.contextPath}/pages/client/orderListClient.jsp">Order Lise
+                            <li><a href="${pageContext.request.contextPath}/controller?command=reloadClientHistory">Order Lise
                                 History</a></li>
                             <li><a href="${pageContext.request.contextPath}/pages/client/profileClient.jsp">My
                                 Profile</a></li>
@@ -32,7 +34,7 @@
                         <c:when test="${sessionScope.driver != null}">
                             <li ><a
                                     href="${pageContext.request.contextPath}/pages/driver/ordersDriver.jsp">Home</a></li>
-                            <li><a href="${pageContext.request.contextPath}/pages/driver/orderListDriver.jsp">Order Lise
+                            <li><a href="${pageContext.request.contextPath}/controller?command=reloadDriverHistory">Order Lise
                                 History</a></li>
                             <li><a href="${pageContext.request.contextPath}/pages/driver/profileDriver.jsp">My
                                 Profile</a></li>

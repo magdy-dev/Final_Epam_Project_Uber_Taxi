@@ -11,6 +11,7 @@ import com.magdy.taxiwebappliction.service.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountCommandLogin implements Commend {
@@ -20,6 +21,7 @@ public class AccountCommandLogin implements Commend {
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
+
         String username = httpServletRequest.getParameter("username");
         String password = httpServletRequest.getParameter("password");
         Client client = clientServiceImpl.login(username, password);
@@ -30,13 +32,16 @@ public class AccountCommandLogin implements Commend {
         HttpSession session = httpServletRequest.getSession();
         if (client != null){
             session.setAttribute("client", client);
+            List<Ride> ridesClientHistory = rideService.selectAllByDriverId(client.getId());
+            session.setAttribute("ridesClientHistory", ridesClientHistory);
             return new Page("/pages/client/orderClient.jsp", true, "Success!");
         }
 
         session.setAttribute("driver", driver);
         List<Ride> rides = rideService.selectAll();
-
+        List<Ride> ridesDriverHistory = rideService.selectAllByDriverId(driver.getId());
         session.setAttribute("rides", rides);
+        session.setAttribute("ridesDriverHistory", ridesDriverHistory);
         return new Page("/pages/driver/ordersDriver.jsp", true, "Success!");
     }
 }

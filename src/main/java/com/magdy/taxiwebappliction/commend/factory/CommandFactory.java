@@ -4,10 +4,7 @@ import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendCreate;
 import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendDelete;
 import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendRead;
 import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendUpdate;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendCreate;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendDelete;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendRead;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendUpdate;
+import com.magdy.taxiwebappliction.commend.clientcomm.*;
 import com.magdy.taxiwebappliction.commend.common.AccountCommandLogin;
 import com.magdy.taxiwebappliction.commend.common.AccountCommandRegister;
 import com.magdy.taxiwebappliction.commend.Commend;
@@ -40,6 +37,10 @@ public class CommandFactory {
                 return new AccountCommandRegisterDriver();
             case "login":
                 return new AccountCommandLogin();
+            case "reloadDriverHistory":
+                return new ReloadDriverHistory();
+            case "reloadClientHistory":
+                return new ReloadClientHistory();
             case "logout":
                 return new LogoutCommand();
             case "acceptOrder":

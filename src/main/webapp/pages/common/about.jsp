@@ -24,8 +24,7 @@
             <a class="navbar-brand" href="https://training.by/">Epam</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="index.jsp">Home</a></li>
-            <li><a href="pages/common/login.jsp">Login </a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/client/profileClient.jsp">Profile </a></li>
         </ul>
     </div>
 </nav>

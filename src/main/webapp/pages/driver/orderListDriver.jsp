@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <html>
 <head>
@@ -41,31 +43,17 @@
       </tr>
       </thead>
       <tbody>
-      <!--   for (Todo todo: todos) {  -->
-      <c:forEach action="${pageContext.request.contextPath}/controller">
-
+      <c:forEach var="ride"  items="${sessionScope.ridesDriverHistory}">
         <tr>
-          <td>
-            <c:out value="${sessionScope.client.id}"/>
-          </td>
-          <td>
-            <%= (new java.util.Date()).toLocaleString()%>
-          </td>
-          <td>
-            <c:out value="${sessionScope.client.email}"/>
-          </td>
-          <td>
-            <c:out value="${sessionScope.client.phoneNumber}"/>
-          </td>
-          <td>
-            <c:out value="${sessionScope.from}"/>
-          </td>
-          <td>
-            <c:out value="${sessionScope.to}"/>
-          </td>
+          <td><c:out value="${ride.order.id}"/></td>
+          <td><c:out value="${ride.order.data}"/></td>
+          <td><c:out value="${ride.order.client.name } / ${ride.order.client.lastName}"/></td>
+          <td><c:out value="${ride.order.client.phoneNumber }"/></td>
+          <td><c:out value="${ride.addressFrom.town } / ${ride.addressFrom.street}"/></td>
+          <td><c:out value="${ride.addressTo.town  } / ${ride.addressTo.street}"/></td>
+        </tr>
 
       </c:forEach>
-      <!-- } -->
       </tbody>
 
     </table>
