@@ -18,7 +18,7 @@ public class DriverDaoImpl extends BaseDao implements DriverDao {
 
     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(DriverDaoImpl.class);
     private static final String INSERT_DRIVER = "INSERT  INTO driver (name,last_Name,car_Number,email,password,phone_Number) VALUES (?,?,?,?,?,?)";
-    private static final String SELECT_DRIVER = "select id,name,last_Name,car_Number,email,password,phone_Number from driver where id=?";
+    private static final String SELECT_DRIVER = "select * from driver where id=?";
     private static final String SELECT_ALL_DRIVER = "select * from driver";
     private static final String UPDATE_DRIVER = "update driver set name=?,last_Name=?,car_Number=?,email=?,password=?,phone_Number=? where id=?";
     private static final String DELETE_DRIVER = "delete from driver where id=?";
@@ -93,7 +93,7 @@ public class DriverDaoImpl extends BaseDao implements DriverDao {
         logger.info("GET_ALL_DRIVER_LIST");
         List<Driver> driverList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_DRIVER)) {
-            ResultSet resultSet = preparedStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
                 String name = resultSet.getString("name");

@@ -1,5 +1,6 @@
 <%@ tag import="com.magdy.taxiwebappliction.entity.Client" %>
 <%@ tag import="com.magdy.taxiwebappliction.entity.Driver" %>
+<%@ tag import="com.magdy.taxiwebappliction.entity.Owner" %>
 <%@tag pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
@@ -12,12 +13,13 @@
         <%
             Client client = (Client) session.getAttribute("client");
             Driver driver = (Driver) session.getAttribute("driver");
-            if (null == client && null == driver) {
+            Owner owner = (Owner) session.getAttribute("owner");
+            if (null == client && null == driver && owner==null) {
                 session.setAttribute("errorMessage", "Login Failed ");
                 response.sendRedirect("/taxiwebappliction/index.jsp");
             }
         %>
-        <c:if test="${ sessionScope.client != null || sessionScope.driver != null}">
+        <c:if test="${ sessionScope.client != null || sessionScope.driver != null || sessionScope.owner != null}">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
                     <c:choose>
@@ -38,6 +40,12 @@
                                 History</a></li>
                             <li><a href="${pageContext.request.contextPath}/pages/driver/profileDriver.jsp">My
                                 Profile</a></li>
+                        </c:when>
+                        <c:when test="${sessionScope.owner != null}">
+                            <li ><a
+                                    href="${pageContext.request.contextPath}/pages/owner/ownerHomePage.jsp">Client List</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pages/owner/ownerDriverList.jsp">Driver list</a></li>
+
                         </c:when>
                     </c:choose>
                     <li><a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a></li>

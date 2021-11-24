@@ -34,11 +34,11 @@ CREATE TABLE taxi_order
 (
     "id"      bigserial   NOT NULL,
     data      varchar(50) NOT NULL,
-    driver_id bigserial,
+    driver_id bigserial ,
     client_id bigserial   NOT NULL,
     CONSTRAINT PK_29 PRIMARY KEY ("id"),
-    CONSTRAINT FK_51 FOREIGN KEY (client_id) REFERENCES client ("id"),
-    CONSTRAINT FK_54 FOREIGN KEY (driver_id) REFERENCES driver ("id")
+    CONSTRAINT FK_51 FOREIGN KEY (client_id) REFERENCES client ("id") ON DELETE SET NULL ,
+    CONSTRAINT FK_54 FOREIGN KEY (driver_id) REFERENCES driver ("id") ON DELETE SET NULL
 );
 
 CREATE INDEX fkIdx_53 ON taxi_order
@@ -96,5 +96,15 @@ CREATE INDEX fkIdx_46 ON transaction
      order_id
         );
 
+
+-- ************************************** owner
+
+CREATE TABLE owner
+(
+    "id"       bigserial NOT NULL,
+    userName varchar(50) unique NOT NULL,
+    password varchar(50) unique NOT NULL,
+    CONSTRAINT PK_9 PRIMARY KEY ( "id" )
+);
 
 

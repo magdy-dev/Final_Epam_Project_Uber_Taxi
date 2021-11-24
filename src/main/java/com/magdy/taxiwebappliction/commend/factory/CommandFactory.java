@@ -37,6 +37,10 @@ public class CommandFactory {
                 return new AccountCommandRegisterDriver();
             case "login":
                 return new AccountCommandLogin();
+            case "deleteDriver":
+                return new DriverCommendDelete();
+            case "deleteClient":
+                return new ClientCommendDelete();
             case "reloadDriverHistory":
                 return new ReloadDriverHistory();
             case "reloadClientHistory":
