@@ -1,13 +1,14 @@
-package com.magdy.taxiwebappliction.service;
+package com.magdy.taxiwebappliction.service.impl;
 
-import com.magdy.taxiwebappliction.dao.AddressDao;
 import com.magdy.taxiwebappliction.entity.Address;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import com.magdy.taxiwebappliction.dao.impl.AddressDaoImpl;
+import com.magdy.taxiwebappliction.service.AddressService;
+import com.magdy.taxiwebappliction.service.BaseService;
+import com.magdy.taxiwebappliction.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class AddressServiceImpl extends BaseService implements AddressService {
 

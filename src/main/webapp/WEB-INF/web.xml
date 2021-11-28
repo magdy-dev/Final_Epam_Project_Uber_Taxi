@@ -9,11 +9,6 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <servlet>
-        <servlet-name>controller</servlet-name>
-        <servlet-class>com.magdy.taxiwebappliction.controller.FrontController</servlet-class>
-    </servlet>
-
 <!--    <filter>-->
 <!--        <filter-name>commandFilter</filter-name>-->
 <!--        <filter-class>com.magdy.taxiwebappliction.controller.filter.CommendFilter</filter-class>-->
@@ -23,6 +18,12 @@
 <!--        <filter-name>commandFilter</filter-name>-->
 <!--        <url-pattern>/controller/*</url-pattern>-->
 <!--    </filter-mapping>-->
+
+    <servlet>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>com.magdy.taxiwebappliction.controller.FrontController</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>controller</servlet-name>

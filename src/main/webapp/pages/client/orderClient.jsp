@@ -32,12 +32,10 @@
                 <div class="card-body">
                     <form action="${pageContext.request.contextPath}/controller"><c:if test="${sessionScope.message != null}">${sessionScope.message}</c:if>
                         <fieldset class="form-group">
-                            <label>From where town</label> <input type="text" class="form-control" name="from_town"
-                                                             required="required">
+                            <label>From where town</label> <input type="text" class="form-control" name="from_town" required="required">
                         </fieldset>
                         <fieldset class="form-group">
-                            <label>From where street </label> <input type="text" class="form-control" name="from_street"
-                                                             required="required">
+                            <label>From where street </label> <input type="text" class="form-control" name="from_street" required="required">
                         </fieldset>
 
                         <fieldset class="form-group">

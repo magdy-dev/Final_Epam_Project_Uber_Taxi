@@ -4,7 +4,7 @@ import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Address;
 import com.magdy.taxiwebappliction.service.ServiceException;
-import com.magdy.taxiwebappliction.service.AddressServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.AddressServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Logger;
 

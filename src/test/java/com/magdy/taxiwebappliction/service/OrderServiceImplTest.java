@@ -9,6 +9,7 @@ import com.magdy.taxiwebappliction.dao.impl.OrderDaoImpl;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.entity.Driver;
 
+import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

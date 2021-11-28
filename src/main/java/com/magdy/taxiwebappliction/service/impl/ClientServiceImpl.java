@@ -1,8 +1,11 @@
-package com.magdy.taxiwebappliction.service;
+package com.magdy.taxiwebappliction.service.impl;
 
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import com.magdy.taxiwebappliction.dao.impl.ClientDaoImpl;
+import com.magdy.taxiwebappliction.service.BaseService;
+import com.magdy.taxiwebappliction.service.ClientService;
+import com.magdy.taxiwebappliction.service.ServiceException;
 
 import java.util.List;
 import java.util.logging.Logger;

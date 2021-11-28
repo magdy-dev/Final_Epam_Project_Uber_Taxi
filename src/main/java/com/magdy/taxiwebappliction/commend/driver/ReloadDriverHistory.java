@@ -2,12 +2,9 @@ package com.magdy.taxiwebappliction.commend.driver;
 
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.entity.Ride;
-import com.magdy.taxiwebappliction.service.ClientServiceImpl;
-import com.magdy.taxiwebappliction.service.DriverServiceImpl;
-import com.magdy.taxiwebappliction.service.RideServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.RideServiceImpl;
 import com.magdy.taxiwebappliction.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;

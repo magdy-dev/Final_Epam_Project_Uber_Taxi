@@ -2,7 +2,7 @@ package com.magdy.taxiwebappliction.commend;
 
 import com.magdy.taxiwebappliction.entity.Address;
 import com.magdy.taxiwebappliction.service.ServiceException;
-import com.magdy.taxiwebappliction.service.AddressServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.AddressServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
