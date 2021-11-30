@@ -1,8 +1,5 @@
 package com.magdy.taxiwebappliction.dao;
 
-import com.magdy.taxiwebappliction.dao.connection.ConnectionBuilder;
-
-import java.sql.Connection;
 import java.util.List;
 
 // interface should be generic

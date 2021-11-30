@@ -29,6 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 public class CommandFactory {
     public static Commend getCommand(HttpServletRequest servletRequest) {
         String command = servletRequest.getParameter("command");
+        if (command == null){
+            return new LogoutCommand();
+        }
         System.out.println("command -> " + command);
         switch (command) {
             case "register":
@@ -105,8 +108,6 @@ public class CommandFactory {
                 return new TransactionCommendUpdate();
             case "transactionDelete":
                 return new TransactionCommendDelete();
-
-
             default:
                 return null;
         }

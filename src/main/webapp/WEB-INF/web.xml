@@ -9,15 +9,15 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-<!--    <filter>-->
-<!--        <filter-name>commandFilter</filter-name>-->
-<!--        <filter-class>com.magdy.taxiwebappliction.controller.filter.CommendFilter</filter-class>-->
-<!--    </filter>-->
+    <filter>
+        <filter-name>commandFilter</filter-name>
+        <filter-class>com.magdy.taxiwebappliction.controller.filter.CommendFilter</filter-class>
+    </filter>
 
-<!--    <filter-mapping>-->
-<!--        <filter-name>commandFilter</filter-name>-->
-<!--        <url-pattern>/controller/*</url-pattern>-->
-<!--    </filter-mapping>-->
+    <filter-mapping>
+        <filter-name>commandFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>controller</servlet-name>
