@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class ReloadDriverHistory implements Commend {
-    private RideServiceImpl rideService = new RideServiceImpl();
+    final private RideServiceImpl rideService = new RideServiceImpl();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {

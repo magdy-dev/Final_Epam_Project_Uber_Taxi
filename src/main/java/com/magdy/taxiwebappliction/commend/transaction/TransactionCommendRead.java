@@ -7,13 +7,13 @@ import com.magdy.taxiwebappliction.entity.Transaction;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class TransactionCommendRead implements Commend {
-    private static final Logger logger = Logger.getLogger(TransactionCommendRead.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -24,7 +24,7 @@ public class TransactionCommendRead implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             transaction = transactionService.selectById(id);
-            logger.info("reade" + transaction);
+            log.info("reade" + transaction);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

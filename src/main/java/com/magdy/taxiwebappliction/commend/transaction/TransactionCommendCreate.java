@@ -11,13 +11,13 @@ import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.DriverServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class TransactionCommendCreate implements Commend {
-    private static final Logger logger = Logger.getLogger(TransactionCommendCreate.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         OrderServiceImpl orderService = new OrderServiceImpl();
@@ -37,7 +37,7 @@ public class TransactionCommendCreate implements Commend {
             driver.setPassword(httpServletRequest.getParameter("12345"));
             driver.setCarNumber(httpServletRequest.getParameter("122333bb"));
             driver.setPhoneNumber(httpServletRequest.getParameter("123344333"));
-            clientService.save(client);
+            driverService.save(driver);
 
             client.setName(httpServletRequest.getParameter("magdyaa"));
             client.setLastName(httpServletRequest.getParameter("shenoda"));
@@ -56,7 +56,7 @@ public class TransactionCommendCreate implements Commend {
             transaction.setCash(true);
             transactionService.save(transaction);
 
-            logger.info("create" + transaction);
+            log.info("create" + transaction);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 

@@ -27,6 +27,7 @@ import com.magdy.taxiwebappliction.commend.transaction.TransactionCommendUpdate;
 import javax.servlet.http.HttpServletRequest;
 
 public class CommandFactory {
+
     public static Commend getCommand(HttpServletRequest servletRequest) {
         String command = servletRequest.getParameter("command");
         if (command == null){

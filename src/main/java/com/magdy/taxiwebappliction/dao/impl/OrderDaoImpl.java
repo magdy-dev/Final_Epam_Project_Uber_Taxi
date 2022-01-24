@@ -7,17 +7,15 @@ import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.entity.Order;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDaoImpl extends BaseDao implements OrderDao {
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(OrderDaoImpl.class);
+    private static final Logger log = (Logger) LogManager.getLogger();
     private static final String INSERT_ORDER = "INSERT  INTO taxi_order (data,client_id,driver_id) VALUES (?,?,?)";
     private static final String SELECT_ORDER = "select data,client_id,driver_id from taxi_order where id=?";
     private static final String SELECT_ALL_ORDER = "select * from taxi_order";
@@ -27,7 +25,8 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 
     @Override
     public Order save(Order order) throws DaoException {
-        logger.info("SAVED_ORDER_SQL");
+        Connection connection = pool.getConnection();
+        log.info("SAVED_ORDER_SQL");
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, order.getData());
             preparedStatement.setLong(2, order.getClient().getId());
@@ -50,13 +49,15 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return order;
     }
 
     @Override
     public List<Order> saveAll(List<Order> list) throws DaoException {
-        logger.info("SAVED_ALL_ORDER");
+        log.info("SAVED_ALL_ORDER");
 
         for (Order order : list) {
             save(order);
@@ -66,7 +67,8 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 
     @Override
     public Order selectById(long id) throws DaoException {
-        logger.info("GET_ORDER_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("GET_ORDER_BY_ID");
         Order order = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ORDER)) {
             preparedStatement.setLong(1, id);
@@ -81,13 +83,16 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return order;
     }
 
     @Override
     public List<Order> selectAll() throws DaoException {
-        logger.info("GET_ALL_ORDER_LIST");
+        Connection connection = pool.getConnection();
+        log.info("GET_ALL_ORDER_LIST");
         List<Order> orderList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ORDER)) {
 
@@ -102,13 +107,16 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return orderList;
     }
 
     @Override
     public Order update(Order order) throws DaoException {
-        logger.info("UPDATE_ORDER");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_ORDER");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, order.getData());
             preparedStatement.setLong(2, order.getClient().getId());
@@ -119,12 +127,15 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             return order;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
     }
 
     @Override
     public boolean deleteById(long id) throws DaoException {
-        logger.info("DELETE_ORDER_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("DELETE_ORDER_BY_ID");
         boolean rewDelete = false;
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDER)) {
 
@@ -132,18 +143,23 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
             rewDelete = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rewDelete;
     }
 
     public void accept(long driverId, Long orderId) throws DaoException {
-        logger.info("UPDATE_ORDER");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_ORDER");
         try (PreparedStatement preparedStatement = connection.prepareStatement("update taxi_order set driver_id=? where id=?")) {
             preparedStatement.setLong(1, driverId);
             preparedStatement.setLong(2, orderId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
     }
 }

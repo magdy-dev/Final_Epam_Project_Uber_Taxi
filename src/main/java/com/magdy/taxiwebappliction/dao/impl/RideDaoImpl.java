@@ -6,16 +6,14 @@ import com.magdy.taxiwebappliction.entity.Order;
 import com.magdy.taxiwebappliction.entity.Ride;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RideDaoImpl extends BaseDao implements RideDao {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(RideDaoImpl.class);
+    private static final Logger log = (Logger) LogManager.getLogger();
     private static final String INSERT_RIDE = "INSERT  INTO ride (address_id_from ,address_id_to,order_id) VALUES (?,?,?)";
     private static final String SELECT_RIDE = "select address_id_from ,address_id_to,order_id from ride where id=?";
     private static final String SELECT_ALL_RIDE = "select * from ride";
@@ -25,7 +23,8 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
     @Override
     public Ride save(Ride ride) throws DaoException {
-        logger.info("SAVED_RIDE_SQL");
+        Connection connection = pool.getConnection();
+        log.info("SAVED_RIDE_SQL");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_RIDE, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -44,13 +43,15 @@ public class RideDaoImpl extends BaseDao implements RideDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return ride;
     }
 
     @Override
     public List<Ride> saveAll(List<Ride> list) throws DaoException {
-        logger.info("SAVED_ALL_RIDE");
+        log.info("SAVED_ALL_RIDE");
         for (Ride ride : list) {
             save(ride);
         }
@@ -60,7 +61,8 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
     @Override
     public Ride selectById(long id) throws DaoException {
-        logger.info("GET_RIDE_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("GET_RIDE_BY_ID");
         Ride ride = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RIDE)) {
             preparedStatement.setLong(1, id);
@@ -75,13 +77,16 @@ public class RideDaoImpl extends BaseDao implements RideDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return ride;
     }
 
     @Override
     public List<Ride> selectAll() throws DaoException {
-        logger.info("GET_ALL_RIDE_LIST");
+        Connection connection = pool.getConnection();
+        log.info("GET_ALL_RIDE_LIST");
         List<Ride> rideList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RIDE)) {
 
@@ -97,13 +102,16 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rideList;
     }
 
     @Override
     public Ride update(Ride ride) throws DaoException {
-        logger.info("UPDATE_RIDE");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_RIDE");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RIDE, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setLong(1, ride.getAddressFrom().getId());
@@ -115,12 +123,15 @@ public class RideDaoImpl extends BaseDao implements RideDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
     }
 
     @Override
     public boolean deleteById(long id) throws DaoException {
-        logger.info("DELETE_RIDE_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("DELETE_RIDE_BY_ID");
         boolean rewDelete;
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_RIDE)) {
 
@@ -128,6 +139,8 @@ public class RideDaoImpl extends BaseDao implements RideDao {
             rewDelete = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rewDelete;
     }

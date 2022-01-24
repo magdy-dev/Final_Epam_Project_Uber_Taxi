@@ -11,14 +11,14 @@ import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.DriverServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class TransactionCommendUpdate implements Commend {
 
-    private static final Logger logger = Logger.getLogger(TransactionCommendUpdate.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         OrderServiceImpl orderService = new OrderServiceImpl();
@@ -56,7 +56,7 @@ public class TransactionCommendUpdate implements Commend {
             transaction.setCash(true);
             transactionService.update(transaction);
 
-            logger.info("update" + transaction);
+            log.info("update" + transaction);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 

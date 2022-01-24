@@ -12,22 +12,22 @@ import com.magdy.taxiwebappliction.service.BaseService;
 import com.magdy.taxiwebappliction.service.Service;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 
 import java.util.List;
 
 public class OrderServiceImpl extends BaseService implements Service<Order> {
+    private static final Logger log= (Logger) LogManager.getLogger();
 
+    private final OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
+    private final DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
+    private final ClientDaoImpl clientDaoImpl = new ClientDaoImpl();
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(OrderDaoImpl.class);
-    private OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
-    private DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
-    private ClientDaoImpl clientDaoImpl = new ClientDaoImpl();
-    private Driver driver = new Driver();
 
     @Override
     public Order save(Order order) throws ServiceException {
-        logger.info("order saved");
+        log.info("order saved");
         try {
             return orderDaoImpl.save(order);
         } catch (DaoException e) {
@@ -42,7 +42,7 @@ public class OrderServiceImpl extends BaseService implements Service<Order> {
 
     @Override
     public Order selectById(long id) throws ServiceException {
-        logger.info("order selectById");
+        log.info("order selectById");
         try {
             Order order = orderDaoImpl.selectById(id);
             if (order == null) {
@@ -50,8 +50,10 @@ public class OrderServiceImpl extends BaseService implements Service<Order> {
             }
             long driverId = order.getDriver().getId();
             long clientId = order.getClient().getId();
+
             Driver driver = driverDaoImpl.selectById(driverId);
             Client client = clientDaoImpl.selectById(clientId);
+
             order.setDriver(driver);
             order.setClient(client);
             return order;
@@ -62,7 +64,7 @@ public class OrderServiceImpl extends BaseService implements Service<Order> {
 
     @Override
     public List<Order> selectAll() throws ServiceException {
-        logger.info("order selectAll");
+        log.info("order selectAll");
         try {
             return orderDaoImpl.selectAll();
         } catch (DaoException e) {
@@ -72,7 +74,7 @@ public class OrderServiceImpl extends BaseService implements Service<Order> {
 
     @Override
     public Order update(Order order) throws ServiceException {
-        logger.info("order update");
+        log.info("order update");
         try {
             return orderDaoImpl.update(order);
         } catch (DaoException e) {
@@ -82,7 +84,7 @@ public class OrderServiceImpl extends BaseService implements Service<Order> {
 
     @Override
     public boolean deleteById(long id) throws ServiceException {
-        logger.info("order deleteById");
+        log.info("order deleteById");
         try {
             return orderDaoImpl.deleteById(id);
         } catch (DaoException e) {

@@ -5,18 +5,15 @@ import com.magdy.taxiwebappliction.dao.Dao;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class ClientDaoImpl extends BaseDao implements ClientDao {
+    private static final Logger log = (Logger) LogManager.getLogger();
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ClientDaoImpl.class);
     private static final String INSERT_CLIENT = "INSERT  INTO client (name,last_Name,email,password,phone_Number) VALUES (?,?,?,?,?)";
     private static final String SELECT_RIDE = "select id,name,last_Name,email,password,phone_Number from client where id=?";
     private static final String SELECT_ALL_RIDE = "select * from client";
@@ -27,7 +24,8 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
 
     @Override
     public Client save(Client client) throws DaoException {
-        logger.info("SAVED_CLIENT_QSL");
+        Connection connection = pool.getConnection();
+        log.info("SAVED_CLIENT_QSL");
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CLIENT, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, client.getName());
             preparedStatement.setString(2, client.getLastName());
@@ -48,6 +46,9 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
+
         }
         return null;
     }
@@ -55,7 +56,7 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
 
     @Override
     public List<Client> saveAll(List<Client> list) throws DaoException {
-        logger.info("SAVED_ALL_CLIENT_SQL");
+        log.info("SAVED_ALL_CLIENT_SQL");
         for (Client client : list) {
             save(client);
         }
@@ -66,7 +67,8 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
 
     @Override
     public Client selectById(long id) throws DaoException {
-        logger.info("GET_CLIENT_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("GET_CLIENT_BY_ID");
         Client client = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RIDE)) {
             preparedStatement.setLong(1, id);
@@ -84,13 +86,16 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return client;
     }
 
     @Override
     public List<Client> selectAll() throws DaoException {
-        logger.info("GET_ALL_CLIENT_SQL");
+        Connection connection = pool.getConnection();
+        log.info("GET_ALL_CLIENT_SQL");
         List<Client> clientList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RIDE)) {
 
@@ -108,6 +113,8 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return clientList;
     }
@@ -115,7 +122,8 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
 
     @Override
     public Client update(Client client) throws DaoException {
-        logger.info("UPDATE_CLIENT_SQL");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_CLIENT_SQL");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RIDE)) {
             preparedStatement.setString(1, client.getName());
             preparedStatement.setString(2, client.getLastName());
@@ -129,13 +137,16 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
     }
 
 
     @Override
     public boolean deleteById(long id) throws DaoException {
-        logger.info("DELETE_CLINT_SQL");
+        Connection connection = pool.getConnection();
+        log.info("DELETE_CLINT_SQL");
         boolean rewDelete = false;
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_RIDE)) {
             preparedStatement.setLong(1, id);
@@ -145,12 +156,15 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rewDelete;
     }
 
     public Client login(String username, String password) throws DaoException {
-        logger.info("GET_CLIENT_BY_userName,Password");
+        Connection connection = pool.getConnection();
+        log.info("GET_CLIENT_BY_userName,Password");
         Client client = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(LOGIN_RIDE)) {
             preparedStatement.setString(1, username);
@@ -168,6 +182,8 @@ public class ClientDaoImpl extends BaseDao implements ClientDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return client;
     }

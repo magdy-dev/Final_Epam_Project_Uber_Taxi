@@ -5,13 +5,13 @@ import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Order;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class OrderCommendRead implements Commend {
-    private static final Logger logger = Logger.getLogger(OrderCommendRead.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -20,7 +20,7 @@ public class OrderCommendRead implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             order = orderService.selectById(id);
-            logger.info("reade" + order);
+            log.info("reade" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

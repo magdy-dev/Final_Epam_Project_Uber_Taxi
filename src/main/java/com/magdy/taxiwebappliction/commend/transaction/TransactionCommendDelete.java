@@ -7,17 +7,16 @@ import com.magdy.taxiwebappliction.entity.Transaction;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class TransactionCommendDelete implements Commend {
 
-    private static final Logger logger = Logger.getLogger(TransactionCommendDelete.class.getName());
-    private OrderServiceImpl orderService = new OrderServiceImpl();
-    private Order order = new Order();
-    private TransactionServiceImpl transactionService = new TransactionServiceImpl();
-    private Transaction transaction = new Transaction();
+    private static final Logger log= (Logger) LogManager.getLogger();
+    private final TransactionServiceImpl transactionService = new TransactionServiceImpl();
+
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -25,7 +24,7 @@ public class TransactionCommendDelete implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             boolean transaction = transactionService.deleteById(id);
-            logger.info("delete" + transaction);
+            log.info("delete" + transaction);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

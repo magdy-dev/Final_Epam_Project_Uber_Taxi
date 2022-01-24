@@ -7,19 +7,19 @@ import com.magdy.taxiwebappliction.service.AddressService;
 import com.magdy.taxiwebappliction.service.BaseService;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import java.util.List;
 
 public class AddressServiceImpl extends BaseService implements AddressService {
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(AddressServiceImpl.class);
+    private static final Logger log= (Logger) LogManager.getLogger();
+    private final AddressDaoImpl addressDaoImpl = new AddressDaoImpl();
 
-    private AddressDaoImpl addressDaoImpl = new AddressDaoImpl();
-    private Address address = new Address();
 
     @Override
     public Address save(Address address) throws ServiceException {
-        logger.info("address saved");
+        log.info("address saved");
         try {
             addressDaoImpl.save(address);
 
@@ -31,7 +31,7 @@ public class AddressServiceImpl extends BaseService implements AddressService {
 
     @Override
     public List<Address> saveAll(List<Address> list) throws ServiceException {
-        logger.info("SAVE_ALL_ADDRESS");
+        log.info("SAVE_ALL_ADDRESS");
         try {
             return addressDaoImpl.saveAll(list);
 
@@ -42,7 +42,7 @@ public class AddressServiceImpl extends BaseService implements AddressService {
 
     @Override
     public Address selectById(long id) throws ServiceException {
-        logger.info("SAVE_ALL_BY_ID");
+        log.info("SAVE_ALL_BY_ID");
         try {
             return addressDaoImpl.selectById(id);
         } catch (DaoException e) {
@@ -53,7 +53,7 @@ public class AddressServiceImpl extends BaseService implements AddressService {
 
     @Override
     public List<Address> selectAll() throws ServiceException {
-        logger.info("GET_ALL_ADDRESS");
+        log.info("GET_ALL_ADDRESS");
         try {
             return addressDaoImpl.selectAll();
 
@@ -65,7 +65,7 @@ public class AddressServiceImpl extends BaseService implements AddressService {
 
     @Override
     public Address update(Address address) throws ServiceException {
-        logger.info("UPDATE_ADDRESS");
+        log.info("UPDATE_ADDRESS");
         try {
             return addressDaoImpl.update(address);
         } catch (DaoException e) {
@@ -76,7 +76,7 @@ public class AddressServiceImpl extends BaseService implements AddressService {
 
     @Override
     public boolean deleteById(long id) throws ServiceException {
-        logger.info("DELETE_ADDRESS");
+        log.info("DELETE_ADDRESS");
         try {
             return addressDaoImpl.deleteById(id);
         } catch (DaoException e) {

@@ -11,21 +11,20 @@ import com.magdy.taxiwebappliction.service.ServiceException;
 import com.magdy.taxiwebappliction.service.TransactionService;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 
 import java.util.List;
 
 public class TransactionServiceImpl extends BaseService implements TransactionService {
+    private static final Logger log= (Logger) LogManager.getLogger();
+    private final TransactionDaoImpl transactionDaoImpl = new TransactionDaoImpl();
+    private final OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(TransactionDaoImpl.class);
-    private TransactionDaoImpl transactionDaoImpl = new TransactionDaoImpl();
-    private OrderServiceImpl orderServiceImpl = new OrderServiceImpl();
-    private DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
-    private ClientDaoImpl clientDaoImpl = new ClientDaoImpl();
 
     @Override
     public Transaction save(Transaction transaction) throws ServiceException {
-        logger.info("transaction saved");
+        log.info("transaction saved");
         try {
             return transactionDaoImpl.save(transaction);
         } catch (DaoException e) {
@@ -35,7 +34,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     public List<Transaction> saveAll(List<Transaction> list) throws ServiceException {
-        logger.info("transaction saveAll");
+        log.info("transaction saveAll");
         try {
             return transactionDaoImpl.saveAll(list);
         } catch (DaoException e) {
@@ -45,7 +44,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     public Transaction selectById(long id) throws ServiceException {
-        logger.info("transaction selectById");
+        log.info("transaction selectById");
         try {
             Transaction transaction = transactionDaoImpl.selectById(id);
             if (transaction == null) {
@@ -64,7 +63,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     public List<Transaction> selectAll() throws ServiceException {
-        logger.info("transaction selectAll");
+        log.info("transaction selectAll");
         try {
             return transactionDaoImpl.selectAll();
         } catch (DaoException e) {
@@ -74,7 +73,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     public Transaction update(Transaction transaction) throws ServiceException {
-        logger.info("transaction update");
+        log.info("transaction update");
         try {
             return transactionDaoImpl.update(transaction);
         } catch (DaoException e) {
@@ -84,7 +83,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     public boolean deleteById(long id) throws ServiceException {
-        logger.info("transaction deleteById");
+        log.info("transaction deleteById");
         try {
             return
                     transactionDaoImpl.deleteById(id);

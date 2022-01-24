@@ -6,13 +6,13 @@ import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendDelete;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.RideServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class RideCommendDelete implements Commend {
-
-    private static final Logger logger = Logger.getLogger(ClientCommendDelete.class.getName());
+    private static final Logger log= (Logger) LogManager.getLogger();
     private RideServiceImpl rideService = new RideServiceImpl();
     private Ride ride = new Ride();
 
@@ -23,7 +23,7 @@ public class RideCommendDelete implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             boolean address = rideService.deleteById(id);
-            logger.info("delete" + ride);
+            log.info("delete" + ride);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

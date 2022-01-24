@@ -6,14 +6,14 @@ import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendUpdate;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class RideCommendUpdate implements Commend {
 
-    private static final Logger logger = Logger.getLogger(ClientCommendUpdate.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         RideServiceImpl rideService = new RideServiceImpl();
@@ -63,7 +63,7 @@ public class RideCommendUpdate implements Commend {
             ride.setAddressTo(addressTo);
             ride.setOrder(order);
             rideService.update(ride);
-            logger.info("update" + ride);
+            log.info("update" + ride);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 

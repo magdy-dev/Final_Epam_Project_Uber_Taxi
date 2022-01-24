@@ -6,13 +6,13 @@ import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendRead;
 import com.magdy.taxiwebappliction.entity.Ride;
 import com.magdy.taxiwebappliction.service.impl.RideServiceImpl;
 import com.magdy.taxiwebappliction.service.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class RideCommendRead implements Commend {
-    private static final Logger logger = Logger.getLogger(ClientCommendRead.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -21,7 +21,7 @@ public class RideCommendRead implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             ride = rideService.selectById(id);
-            logger.info("reade" + ride);
+            log.info("reade" + ride);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

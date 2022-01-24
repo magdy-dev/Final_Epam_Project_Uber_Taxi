@@ -6,17 +6,14 @@ import com.magdy.taxiwebappliction.entity.Order;
 import com.magdy.taxiwebappliction.entity.Transaction;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class TransactionDaoImpl extends BaseDao implements TransactionDao {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(TransactionDaoImpl.class);
+    private static final Logger log = (Logger) LogManager.getLogger();
     private static final String INSERT_TRANSACTION = "INSERT  INTO transaction (cash,order_id,amount) VALUES (?,?,?)";
     private static final String SELECT_TRANSACTION = "select  id,cash,order_id,amount from transaction where id=?";
     private static final String SELECT_ALL_TRANSACTION = "select * from transaction";
@@ -25,7 +22,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
     @Override
     public Transaction save(Transaction transaction) throws DaoException {
-        logger.info("SAVED_TRANSACTION_SQL");
+        Connection connection = pool.getConnection();
+        log.info("SAVED_TRANSACTION_SQL");
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRANSACTION, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setBoolean(1, transaction.isCash());
@@ -44,6 +42,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return transaction;
     }
@@ -59,7 +59,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
     @Override
     public Transaction selectById(long id) throws DaoException {
-        logger.info("GET_TRANSACTION_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("GET_TRANSACTION_BY_ID");
         Transaction transaction = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TRANSACTION)) {
             preparedStatement.setLong(1, id);
@@ -73,6 +74,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
 
         return transaction;
@@ -80,7 +83,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
     @Override
     public List<Transaction> selectAll() throws DaoException {
-        logger.info("GET_ALL_TRANSACTION_LIST");
+        Connection connection = pool.getConnection();
+        log.info("GET_ALL_TRANSACTION_LIST");
         List<Transaction> transactionList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRANSACTION)) {
 
@@ -95,13 +99,16 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return transactionList;
     }
 
     @Override
     public Transaction update(Transaction transaction) throws DaoException {
-        logger.info("UPDATE_TRANSACTION");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_TRANSACTION");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRANSACTION, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -114,12 +121,15 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
     }
 
     @Override
     public boolean deleteById(long id) throws DaoException {
-        logger.info("DELETE_TRANSACTION_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("DELETE_TRANSACTION_BY_ID");
         boolean rewDelete;
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TRANSACTION)) {
 
@@ -127,6 +137,8 @@ public class TransactionDaoImpl extends BaseDao implements TransactionDao {
             rewDelete = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rewDelete;
     }

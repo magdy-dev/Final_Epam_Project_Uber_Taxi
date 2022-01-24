@@ -7,20 +7,20 @@ import com.magdy.taxiwebappliction.entity.Owner;
 import com.magdy.taxiwebappliction.service.BaseService;
 import com.magdy.taxiwebappliction.service.OwnerService;
 import com.magdy.taxiwebappliction.service.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 
 public class OwnerServiceImpl extends BaseService implements OwnerService {
 
-    private static final Logger logger = Logger.getLogger(OwnerServiceImpl.class.getName());
-
-    private OwnerDaoImpl ownerDaoImp = new OwnerDaoImpl();
+    private static final Logger log= (Logger) LogManager.getLogger();
+    private final OwnerDaoImpl ownerDaoImp = new OwnerDaoImpl();
 
 
     public Owner login(String username, String password) throws ServiceException {
-        logger.info("LOGIN PASS");
+        log.info("LOGIN PASS");
         try {
 
             return ownerDaoImp.login(username, password);

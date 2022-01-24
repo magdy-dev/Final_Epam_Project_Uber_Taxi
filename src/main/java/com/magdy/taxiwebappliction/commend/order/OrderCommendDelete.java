@@ -5,15 +5,17 @@ import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Order;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class OrderCommendDelete implements Commend {
 
-    private static final Logger logger = Logger.getLogger(OrderCommendDelete.class.getName());
-    private OrderServiceImpl orderService = new OrderServiceImpl();
-    private Order order = new Order();
+    private static final Logger log= (Logger) LogManager.getLogger();
+
+    private final OrderServiceImpl orderService = new OrderServiceImpl();
+    private final Order order = new Order();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -21,7 +23,7 @@ public class OrderCommendDelete implements Commend {
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
             boolean order = orderService.deleteById(id);
-            logger.info("delete" + order);
+            log.info("delete" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }

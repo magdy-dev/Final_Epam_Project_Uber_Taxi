@@ -3,7 +3,10 @@ package com.magdy.taxiwebappliction.controller;
 import com.magdy.taxiwebappliction.commend.factory.CommandFactory;
 import com.magdy.taxiwebappliction.commend.Commend;
 import com.magdy.taxiwebappliction.commend.Page;
+import com.magdy.taxiwebappliction.pool.ConnectionPool;
 import com.magdy.taxiwebappliction.service.ServiceException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 
 public class FrontController extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(FrontController.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     private String message;
 
@@ -30,10 +31,9 @@ public class FrontController extends HttpServlet {
     }
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-
         Commend command = CommandFactory.getCommand(request);
         if(command==null){
-            logger.info("no commend has been foind ");
+            log.error("no commend has been find ");
             return ;
         }
         try {

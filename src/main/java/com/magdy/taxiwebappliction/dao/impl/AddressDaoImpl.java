@@ -4,6 +4,7 @@ import com.magdy.taxiwebappliction.dao.AddressDao;
 import com.magdy.taxiwebappliction.entity.Address;
 import com.magdy.taxiwebappliction.dao.DaoException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 
 import java.sql.*;
@@ -14,7 +15,7 @@ import java.util.List;
 public class AddressDaoImpl extends BaseDao implements AddressDao {
 
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(AddressDaoImpl.class);
+    private static final Logger log = (Logger) LogManager.getLogger();
     private static final String INSERT_ADDRESS = "INSERT  INTO Address (town,street,building) VALUES (?,?,?)";
     private static final String SELECT_ADDRESS = "select id,town,street,building from address where id=?";
     private static final String SELECT_ALL_ADDRESS = "select * from address";
@@ -24,7 +25,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
     @Override
     public Address save(Address address) throws DaoException {
-        logger.info("SAVED_ADDRESS_SQL");
+        log.info("SAVED_ADDRESS_SQL");
+        Connection connection = pool.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, address.getTown());
             preparedStatement.setString(2, address.getStreet());
@@ -44,6 +46,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return null;
     }
@@ -51,7 +55,7 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
     @Override
     public List<Address> saveAll(List<Address> list) throws DaoException {
-        logger.info("SAVED_ALL_ADDRESS");
+        log.info("SAVED_ALL_ADDRESS");
         for (Address address : list) {
 
             save(address);
@@ -62,7 +66,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
     @Override
     public Address selectById(long id) throws DaoException {
-        logger.info("GET_ADDRESS_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("GET_ADDRESS_BY_ID");
         Address address = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ADDRESS)) {
             preparedStatement.setLong(1, id);
@@ -78,6 +83,9 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+
+        } finally {
+            pool.returnConnection(connection);
         }
         return address;
     }
@@ -85,7 +93,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
     @Override
     public List<Address> selectAll() throws DaoException {
-        logger.info("GET_ALL_ADDRESS_LIST");
+        Connection connection = pool.getConnection();
+        log.info("GET_ALL_ADDRESS_LIST");
         List<Address> addressArrayList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ADDRESS)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -98,13 +107,16 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return addressArrayList;
     }
 
     @Override
     public Address update(Address address) throws DaoException {
-        logger.info("UPDATE_ADDRESS");
+        Connection connection = pool.getConnection();
+        log.info("UPDATE_ADDRESS");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, address.getTown());
@@ -118,6 +130,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
             throw new DaoException(e.getMessage());
 
+        } finally {
+            pool.returnConnection(connection);
         }
 
     }
@@ -125,7 +139,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
 
     @Override
     public boolean deleteById(long id) throws DaoException {
-        logger.info("DELETE_ADDRESS_BY_ID");
+        Connection connection = pool.getConnection();
+        log.info("DELETE_ADDRESS_BY_ID");
         boolean rowDelete = false;
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ADDRESS)) {
             preparedStatement.setLong(1, id);
@@ -134,6 +149,8 @@ public class AddressDaoImpl extends BaseDao implements AddressDao {
         } catch (SQLException e) {
 
             throw new DaoException(e.getMessage());
+        } finally {
+            pool.returnConnection(connection);
         }
         return rowDelete;
     }

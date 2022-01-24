@@ -7,14 +7,14 @@ import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.DriverServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class OrderCommendUpdate implements Commend {
 
-    private static final Logger logger = Logger.getLogger(OrderCommendUpdate.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -47,7 +47,7 @@ public class OrderCommendUpdate implements Commend {
             orderService.update(order);
 
 
-            logger.info("order" + order);
+            log.info("order" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 

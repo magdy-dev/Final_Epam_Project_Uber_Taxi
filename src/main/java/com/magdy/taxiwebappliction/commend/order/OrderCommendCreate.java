@@ -6,21 +6,23 @@ import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.RideServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.logging.Logger;
 
 public class OrderCommendCreate implements Commend {
-    private static final Logger logger = Logger.getLogger(OrderCommendCreate.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         RideServiceImpl rideService = new RideServiceImpl();
         OrderServiceImpl orderService = new OrderServiceImpl();
         HttpSession session = httpServletRequest.getSession();
+
+
         String fromTown = httpServletRequest.getParameter("from_town");
         String fromStreet = httpServletRequest.getParameter("from_street");
 
@@ -48,7 +50,7 @@ public class OrderCommendCreate implements Commend {
             session.setAttribute("from",fromTown + "-" + fromStreet);
             session.setAttribute("to",toTown + "-" + toStreet);
             session.setAttribute("message","Order Success!");
-            logger.info("create" + order);
+            log.info("create" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 

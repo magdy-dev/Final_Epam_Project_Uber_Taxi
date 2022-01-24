@@ -8,22 +8,23 @@ import com.magdy.taxiwebappliction.service.BaseService;
 import com.magdy.taxiwebappliction.service.RideService;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RideServiceImpl extends BaseService implements RideService {
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(RideServiceImpl.class);
-    private RideDaoImpl rideDaoImpl = new RideDaoImpl();
-    private OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
-    private AddressDaoImpl addressDaoImpl = new AddressDaoImpl();
-    private ClientDaoImpl clientDaoImpl = new ClientDaoImpl();
-    private DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
+    private static final Logger log= (Logger) LogManager.getLogger();
+    private final RideDaoImpl rideDaoImpl = new RideDaoImpl();
+    private final OrderDaoImpl orderDaoImpl = new OrderDaoImpl();
+    private final AddressDaoImpl addressDaoImpl = new AddressDaoImpl();
+    private final ClientDaoImpl clientDaoImpl = new ClientDaoImpl();
+    private final DriverDaoImpl driverDaoImpl = new DriverDaoImpl();
 
     @Override
     public Ride save(Ride ride) throws ServiceException {
-        logger.info("ride saved");
+        log.info("ride saved");
         try {
             addressDaoImpl.save(ride.getAddressFrom());
             addressDaoImpl.save(ride.getAddressTo());
@@ -35,7 +36,7 @@ public class RideServiceImpl extends BaseService implements RideService {
 
     @Override
     public List<Ride> saveAll(List<Ride> list) throws ServiceException {
-        logger.info("ride saveAll");
+        log.info("ride saveAll");
         try {
             return rideDaoImpl.saveAll(list);
         } catch (DaoException e) {
@@ -45,7 +46,7 @@ public class RideServiceImpl extends BaseService implements RideService {
 
     @Override
     public Ride selectById(long id) throws ServiceException {
-        logger.info("ride selectById");
+        log.info("ride selectById");
         try {
             Ride ride = rideDaoImpl.selectById(id);
             if (ride==null){
@@ -77,7 +78,7 @@ public class RideServiceImpl extends BaseService implements RideService {
 
     @Override
     public List<Ride> selectAll() throws ServiceException {
-        logger.info("ride selectAll");
+        log.info("ride selectAll");
         try {
             List<Ride> rides = rideDaoImpl.selectAll();
             List<Ride> res = new ArrayList<>();
@@ -95,7 +96,7 @@ public class RideServiceImpl extends BaseService implements RideService {
     }
 
     public List<Ride> selectAllByDriverId(Long driverId) throws ServiceException {
-        logger.info("ride selectAll by driver Id");
+        log.info("ride selectAll by driver Id");
         try {
             List<Ride> rides = rideDaoImpl.selectAll();
             System.out.println("driver "+rides.toString());
@@ -113,7 +114,7 @@ public class RideServiceImpl extends BaseService implements RideService {
     }
 
     public List<Ride> selectAllByClientId(Long clientId) throws ServiceException {
-        logger.info("ride selectAll by driver Id");
+        log.info("ride selectAll by driver Id");
         try {
             List<Ride> rides = rideDaoImpl.selectAll();
             System.out.println("driver "+rides.toString());
@@ -132,7 +133,7 @@ public class RideServiceImpl extends BaseService implements RideService {
 
     @Override
     public Ride update(Ride ride) throws ServiceException {
-        logger.info("ride update");
+        log.info("ride update");
         try {
             return rideDaoImpl.update(ride);
         } catch (DaoException e) {
@@ -142,7 +143,7 @@ public class RideServiceImpl extends BaseService implements RideService {
 
     @Override
     public boolean deleteById(long id) throws ServiceException {
-        logger.info("ride deleteById");
+        log.info("ride deleteById");
         try {
             return rideDaoImpl.deleteById(id);
         } catch (DaoException e) {

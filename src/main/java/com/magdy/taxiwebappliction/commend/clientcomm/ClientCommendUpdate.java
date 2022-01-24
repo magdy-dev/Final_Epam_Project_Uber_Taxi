@@ -5,14 +5,14 @@ import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.logging.Logger;
 
 public class ClientCommendUpdate implements Commend {
 
-    private static final Logger logger = Logger.getLogger(ClientCommendRead.class.getName());
-
+    private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
@@ -27,7 +27,7 @@ public class ClientCommendUpdate implements Commend {
             client.setPassword(httpServletRequest.getParameter("password"));
             client.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
             client = clientServiceImpl.update(client);
-            logger.info("update" + client);
+            log.info("update" + client);
 
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());

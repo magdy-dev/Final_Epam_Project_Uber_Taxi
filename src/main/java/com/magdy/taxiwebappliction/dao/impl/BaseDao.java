@@ -1,13 +1,14 @@
 package com.magdy.taxiwebappliction.dao.impl;
 
-import com.magdy.taxiwebappliction.dao.connection.ConnectionBuilder;
 
-import java.sql.Connection;
+
+
+import com.magdy.taxiwebappliction.pool.ConnectionPool;
+
+
 
 public abstract class BaseDao {
-    protected Connection connection = ConnectionBuilder.getConnection();
+    protected ConnectionPool pool = ConnectionPool.getInstance();
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
+
 }
