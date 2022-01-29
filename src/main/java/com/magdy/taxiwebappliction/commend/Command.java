@@ -5,6 +5,6 @@ import com.magdy.taxiwebappliction.service.ServiceException;
 import javax.servlet.http.HttpServletRequest;
 
 
-public interface Commend {
+public interface Command {
     Page execute(HttpServletRequest httpServletRequest) throws ServiceException;
 }

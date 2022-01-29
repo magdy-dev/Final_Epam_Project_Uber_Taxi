@@ -1,36 +1,42 @@
-package com.magdy.taxiwebappliction.commend.transaction;
+package com.magdy.taxiwebappliction.commend.ride;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.entity.Client;
-import com.magdy.taxiwebappliction.entity.Driver;
-import com.magdy.taxiwebappliction.entity.Order;
-import com.magdy.taxiwebappliction.entity.Transaction;
+import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
-import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
-import com.magdy.taxiwebappliction.service.impl.DriverServiceImpl;
-import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
-import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class TransactionCommendUpdate implements Commend {
-
+public class RideCommandCreate implements Command {
     private static final Logger log= (Logger) LogManager.getLogger();
+
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
+        RideServiceImpl rideService = new RideServiceImpl();
+        Ride ride = new Ride();
+        AddressServiceImpl addressService = new AddressServiceImpl();
+        Address addressFrom = new Address();
+        Address addressTo = new Address();
         OrderServiceImpl orderService = new OrderServiceImpl();
         Order order = new Order();
-        DriverServiceImpl driverService = new DriverServiceImpl();
         Driver driver = new Driver();
         ClientServiceImpl clientService = new ClientServiceImpl();
         Client client = new Client();
-        TransactionServiceImpl transactionService = new TransactionServiceImpl();
-        Transaction transaction = new Transaction();
 
         try {
+            addressFrom.setTown(httpServletRequest.getParameter("minsk"));
+            addressFrom.setStreet(httpServletRequest.getParameter("riga"));
+            addressFrom.setBuilding(22);
+            addressService.save(addressFrom);
+
+            addressTo.setTown(httpServletRequest.getParameter("minsk"));
+            addressTo.setStreet(httpServletRequest.getParameter("nemiga"));
+            addressTo.setBuilding(33);
+            addressService.save(addressTo);
+
             driver.setName(httpServletRequest.getParameter("magdy"));
             driver.setLastName(httpServletRequest.getParameter("shenoda"));
             driver.setEmail(httpServletRequest.getParameter("amamama@.gmail.com"));
@@ -51,12 +57,11 @@ public class TransactionCommendUpdate implements Commend {
             order.setClient(client);
             orderService.save(order);
 
-            transaction.setOrder(order);
-            transaction.setAmount(233.3);
-            transaction.setCash(true);
-            transactionService.update(transaction);
-
-            log.info("update" + transaction);
+            ride.setAddressFrom(addressFrom);
+            ride.setAddressTo(addressTo);
+            ride.setOrder(order);
+            rideService.save(ride);
+            log.info("create" + ride);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 
@@ -64,5 +69,4 @@ public class TransactionCommendUpdate implements Commend {
 
         return new Page("/home.jsp", true, "Success!");
     }
-
 }

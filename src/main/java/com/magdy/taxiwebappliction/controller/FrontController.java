@@ -1,9 +1,8 @@
 package com.magdy.taxiwebappliction.controller;
 
 import com.magdy.taxiwebappliction.commend.factory.CommandFactory;
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.pool.ConnectionPool;
 import com.magdy.taxiwebappliction.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -31,7 +30,7 @@ public class FrontController extends HttpServlet {
     }
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        Commend command = CommandFactory.getCommand(request);
+        Command command = CommandFactory.getCommand(request);
         if(command==null){
             log.error("no commend has been find ");
             return ;

@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.common;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.service.ServiceException;
@@ -8,7 +8,7 @@ import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 
 
-public class AccountCommandRegister implements Commend {
+public class AccountCommandRegister implements Command {
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws  ServiceException {

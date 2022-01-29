@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.driver;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.service.ServiceException;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class DriverCommendDelete implements Commend {
+public class DriverCommandDelete implements Command {
     private DriverServiceImpl driverServiceImpl = new DriverServiceImpl();
-    private static final Logger logger = Logger.getLogger(DriverCommendDelete.class.getName());
+    private static final Logger logger = Logger.getLogger(DriverCommandDelete.class.getName());
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {

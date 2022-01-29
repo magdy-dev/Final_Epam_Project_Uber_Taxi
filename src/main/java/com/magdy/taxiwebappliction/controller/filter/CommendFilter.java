@@ -1,7 +1,7 @@
 package com.magdy.taxiwebappliction.controller.filter;
 
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.factory.CommandFactory;
 
 import javax.servlet.*;
@@ -17,7 +17,7 @@ public class CommendFilter implements Filter{
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
 
-        Commend command = CommandFactory.getCommand(request);
+        Command command = CommandFactory.getCommand(request);
         if(command!= null){
             filterChain.doFilter(servletRequest,servletResponse);
         }

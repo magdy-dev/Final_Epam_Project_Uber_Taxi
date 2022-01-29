@@ -1,40 +1,43 @@
 package com.magdy.taxiwebappliction.commend.factory;
 
-import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendCreate;
-import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendDelete;
-import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendRead;
-import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommendUpdate;
+import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommandCreate;
+import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommandDelete;
+import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommandRead;
+import com.magdy.taxiwebappliction.commend.addresscommend.AddressCommandUpdate;
+import com.magdy.taxiwebappliction.commend.changelanguage.ChangeLanguageCommand;
 import com.magdy.taxiwebappliction.commend.clientcomm.*;
 import com.magdy.taxiwebappliction.commend.common.AccountCommandLogin;
 import com.magdy.taxiwebappliction.commend.common.AccountCommandRegister;
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.common.AccountCommandRegisterDriver;
 import com.magdy.taxiwebappliction.commend.common.LogoutCommand;
 import com.magdy.taxiwebappliction.commend.driver.*;
-import com.magdy.taxiwebappliction.commend.order.OrderCommendCreate;
-import com.magdy.taxiwebappliction.commend.order.OrderCommendDelete;
-import com.magdy.taxiwebappliction.commend.order.OrderCommendRead;
-import com.magdy.taxiwebappliction.commend.order.OrderCommendUpdate;
-import com.magdy.taxiwebappliction.commend.ride.RideCommendCreate;
-import com.magdy.taxiwebappliction.commend.ride.RideCommendDelete;
-import com.magdy.taxiwebappliction.commend.ride.RideCommendRead;
-import com.magdy.taxiwebappliction.commend.ride.RideCommendUpdate;
-import com.magdy.taxiwebappliction.commend.transaction.TransactionCommendCreate;
-import com.magdy.taxiwebappliction.commend.transaction.TransactionCommendDelete;
-import com.magdy.taxiwebappliction.commend.transaction.TransactionCommendRead;
-import com.magdy.taxiwebappliction.commend.transaction.TransactionCommendUpdate;
+import com.magdy.taxiwebappliction.commend.order.OrderCommandCreate;
+import com.magdy.taxiwebappliction.commend.order.OrderCommandDelete;
+import com.magdy.taxiwebappliction.commend.order.OrderCommandRead;
+import com.magdy.taxiwebappliction.commend.order.OrderCommandUpdate;
+import com.magdy.taxiwebappliction.commend.ride.RideCommandCreate;
+import com.magdy.taxiwebappliction.commend.ride.RideCommandDelete;
+import com.magdy.taxiwebappliction.commend.ride.RideCommandRead;
+import com.magdy.taxiwebappliction.commend.ride.RideCommandUpdate;
+import com.magdy.taxiwebappliction.commend.transaction.TransactionCommandCreate;
+import com.magdy.taxiwebappliction.commend.transaction.TransactionCommandDelete;
+import com.magdy.taxiwebappliction.commend.transaction.TransactionCommandRead;
+import com.magdy.taxiwebappliction.commend.transaction.TransactionCommandUpdate;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class CommandFactory {
 
-    public static Commend getCommand(HttpServletRequest servletRequest) {
+    public static Command getCommand(HttpServletRequest servletRequest) {
         String command = servletRequest.getParameter("command");
         if (command == null){
             return new LogoutCommand();
         }
         System.out.println("command -> " + command);
         switch (command) {
+            case "common_change_language":
+                return new ChangeLanguageCommand();
             case "register":
                 return new AccountCommandRegister();
             case "registerDriver":
@@ -42,9 +45,9 @@ public class CommandFactory {
             case "login":
                 return new AccountCommandLogin();
             case "deleteDriver":
-                return new DriverCommendDelete();
+                return new DriverCommandDelete();
             case "deleteClient":
-                return new ClientCommendDelete();
+                return new ClientCommandDelete();
             case "reloadDriverHistory":
                 return new ReloadDriverHistory();
             case "reloadClientHistory":
@@ -54,61 +57,61 @@ public class CommandFactory {
             case "acceptOrder":
                 return new AcceptCommand();
             case "addressRead":
-                return new AddressCommendRead();
+                return new AddressCommandRead();
             case "addressCreate":
-                return new AddressCommendCreate();
+                return new AddressCommandCreate();
             case "addressUpdate":
-                return new AddressCommendUpdate();
+                return new AddressCommandUpdate();
             case "addressDelete":
-                return new AddressCommendDelete();
+                return new AddressCommandDelete();
 
             case "clientCreat":
-                return new ClientCommendCreate();
+                return new ClientCommandCreate();
             case "clientRead":
-                return new ClientCommendRead();
+                return new ClientCommandRead();
             case "clientUpdate":
-                return new ClientCommendUpdate();
+                return new ClientCommandUpdate();
             case "clientDelete":
-                return new ClientCommendDelete();
+                return new ClientCommandDelete();
 
             case "driverCreate":
-                return new DriverCommendCreate();
+                return new DriverCommandCreate();
             case "driverRead":
-                return new DriverCommendRead();
+                return new DriverCommandRead();
             case "driverUpdate":
-                return new DriverCommendUpdate();
+                return new DriverCommandUpdate();
             case "driverDelete":
-                return new DriverCommendDelete();
+                return new DriverCommandDelete();
 
 
             case "requestDriver":
-                return new OrderCommendCreate();
+                return new OrderCommandCreate();
             case "orderRead":
-                return new OrderCommendRead();
+                return new OrderCommandRead();
             case "orderUpdate":
-                return new OrderCommendUpdate();
+                return new OrderCommandUpdate();
             case "orderDelete":
-                return new OrderCommendDelete();
+                return new OrderCommandDelete();
 
 
             case "rideCreate":
-                return new RideCommendCreate();
+                return new RideCommandCreate();
             case "rideRead":
-                return new RideCommendRead();
+                return new RideCommandRead();
             case "rideUpdate":
-                return new RideCommendUpdate();
+                return new RideCommandUpdate();
             case "rideDelete":
-                return new RideCommendDelete();
+                return new RideCommandDelete();
 
 
             case "transactionCreate":
-                return new TransactionCommendCreate();
+                return new TransactionCommandCreate();
             case "transactionRead":
-                return new TransactionCommendRead();
+                return new TransactionCommandRead();
             case "transactionUpdate":
-                return new TransactionCommendUpdate();
+                return new TransactionCommandUpdate();
             case "transactionDelete":
-                return new TransactionCommendDelete();
+                return new TransactionCommandDelete();
             default:
                 return null;
         }

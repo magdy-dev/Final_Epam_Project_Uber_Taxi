@@ -6,7 +6,7 @@ import com.magdy.taxiwebappliction.service.impl.AddressServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AddressCommendCreateTest {
+public class AddressCommandCreateTest {
 
     @Test
     public void execute() throws ServiceException {

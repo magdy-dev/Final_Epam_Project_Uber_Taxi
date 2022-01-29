@@ -9,6 +9,7 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -19,7 +20,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <title>order</title>
+  <fmt:bundle basename="page_content">
+    <fmt:message key="main.title" var="online"/>
+    <fmt:message key="main.id" var="id"/>
+    <fmt:message key="main.data" var="data"/>
+    <fmt:message key="main.Cname" var="name"/>
+    <fmt:message key="main.numberP" var="number"/>
+    <fmt:message key="main.from" var="from"/>
+    <fmt:message key="main.to" var="to"/>
+
+  </fmt:bundle>
 </head>
+
+
 <body style="background-color: gold">
 
 <tag:userMenu/>
@@ -28,18 +41,17 @@
   <!-- <div class="alert alert-success" *ngIf='message'>{{message}}</div> -->
 
   <div class="container">
-    <h3 class="text-center">List of Order</h3>
-
+    <h3 class="text-center">${pageScope.list}</h3>
     <br>
     <table class="table table-bordered">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Data</th>
-        <th>Client Name</th>
-        <th>Phone Number</th>
-        <th>From</th>
-        <th>To</th>
+        <th>${pageScope.id}</th>
+        <th>${pageScope.data}</th>
+        <th>${pageScope.name}</th>
+        <th>${pageScope.number}</th>
+        <th>${pageScope.from}</th>
+        <th>${pageScope.to}</th>
       </tr>
       </thead>
       <tbody>

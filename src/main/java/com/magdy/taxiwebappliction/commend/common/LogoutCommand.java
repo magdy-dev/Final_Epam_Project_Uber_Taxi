@@ -1,13 +1,13 @@
 package com.magdy.taxiwebappliction.commend.common;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.service.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class LogoutCommand implements Commend {
+public class LogoutCommand implements Command {
 
 
 

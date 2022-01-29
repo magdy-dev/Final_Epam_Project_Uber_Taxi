@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.order;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
-public class OrderCommendCreate implements Commend {
+public class OrderCommandCreate implements Command {
     private static final Logger log= (Logger) LogManager.getLogger();
 
     @Override

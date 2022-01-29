@@ -1,8 +1,7 @@
 package com.magdy.taxiwebappliction.commend.ride;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendRead;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.*;
@@ -11,9 +10,9 @@ import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RideCommendCreate implements Commend {
-    private static final Logger log= (Logger) LogManager.getLogger();
+public class RideCommandUpdate implements Command {
 
+    private static final Logger log= (Logger) LogManager.getLogger();
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         RideServiceImpl rideService = new RideServiceImpl();
@@ -23,14 +22,15 @@ public class RideCommendCreate implements Commend {
         Address addressTo = new Address();
         OrderServiceImpl orderService = new OrderServiceImpl();
         Order order = new Order();
+        DriverServiceImpl driverService = new DriverServiceImpl();
         Driver driver = new Driver();
         ClientServiceImpl clientService = new ClientServiceImpl();
         Client client = new Client();
 
         try {
-            addressFrom.setTown(httpServletRequest.getParameter("minsk"));
-            addressFrom.setStreet(httpServletRequest.getParameter("riga"));
-            addressFrom.setBuilding(22);
+            addressFrom.setTown(httpServletRequest.getParameter("minskqq"));
+            addressFrom.setStreet(httpServletRequest.getParameter("wwriga"));
+            addressFrom.setBuilding(222);
             addressService.save(addressFrom);
 
             addressTo.setTown(httpServletRequest.getParameter("minsk"));
@@ -61,8 +61,8 @@ public class RideCommendCreate implements Commend {
             ride.setAddressFrom(addressFrom);
             ride.setAddressTo(addressTo);
             ride.setOrder(order);
-            rideService.save(ride);
-            log.info("create" + ride);
+            rideService.update(ride);
+            log.info("update" + ride);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 
@@ -70,4 +70,5 @@ public class RideCommendCreate implements Commend {
 
         return new Page("/home.jsp", true, "Success!");
     }
+
 }

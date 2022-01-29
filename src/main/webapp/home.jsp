@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html img src="pexels-photo-5746988.jpeg">
 <head>
 
@@ -18,6 +19,8 @@
 
     <title>Home</title>
 </head>
+
+
 <body  style="background: url('./img/pexels-photo-462867.jpeg')">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -32,7 +35,6 @@
 
     </div>
 </nav>
-
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">

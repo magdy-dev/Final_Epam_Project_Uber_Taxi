@@ -1,33 +1,29 @@
-package com.magdy.taxiwebappliction.commend.ride;
+package com.magdy.taxiwebappliction.commend.order;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.commend.clientcomm.ClientCommendDelete;
-import com.magdy.taxiwebappliction.entity.*;
+import com.magdy.taxiwebappliction.entity.Order;
 import com.magdy.taxiwebappliction.service.*;
-import com.magdy.taxiwebappliction.service.impl.RideServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RideCommendDelete implements Commend {
+public class OrderCommandRead implements Command {
     private static final Logger log= (Logger) LogManager.getLogger();
-    private RideServiceImpl rideService = new RideServiceImpl();
-    private Ride ride = new Ride();
-
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
-
+        OrderServiceImpl orderService = new OrderServiceImpl();
+        Order order = new Order();
         try {
             long id = Long.parseLong(httpServletRequest.getParameter("id"));
-            boolean address = rideService.deleteById(id);
-            log.info("delete" + ride);
+            order = orderService.selectById(id);
+            log.info("reade" + order);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
         }
         return new Page("/home.jsp", true, "Success!");
     }
 }
-

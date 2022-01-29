@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.clientcomm;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.service.ServiceException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class ClientCommendDelete implements Commend {
+public class ClientCommandDelete implements Command {
     private ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
     private static final Logger log= (Logger) LogManager.getLogger();
     @Override

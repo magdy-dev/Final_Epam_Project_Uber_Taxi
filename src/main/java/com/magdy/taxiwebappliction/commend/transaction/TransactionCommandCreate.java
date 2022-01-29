@@ -1,21 +1,23 @@
-package com.magdy.taxiwebappliction.commend.order;
+package com.magdy.taxiwebappliction.commend.transaction;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
-import com.magdy.taxiwebappliction.entity.*;
+import com.magdy.taxiwebappliction.entity.Client;
+import com.magdy.taxiwebappliction.entity.Driver;
+import com.magdy.taxiwebappliction.entity.Order;
+import com.magdy.taxiwebappliction.entity.Transaction;
 import com.magdy.taxiwebappliction.service.*;
 import com.magdy.taxiwebappliction.service.impl.ClientServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.DriverServiceImpl;
 import com.magdy.taxiwebappliction.service.impl.OrderServiceImpl;
+import com.magdy.taxiwebappliction.service.impl.TransactionServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class OrderCommendUpdate implements Commend {
-
+public class TransactionCommandCreate implements Command {
     private static final Logger log= (Logger) LogManager.getLogger();
-
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {
         OrderServiceImpl orderService = new OrderServiceImpl();
@@ -24,6 +26,9 @@ public class OrderCommendUpdate implements Commend {
         Driver driver = new Driver();
         ClientServiceImpl clientService = new ClientServiceImpl();
         Client client = new Client();
+        TransactionServiceImpl transactionService = new TransactionServiceImpl();
+        Transaction transaction = new Transaction();
+
         try {
 
             driver.setName(httpServletRequest.getParameter("magdy"));
@@ -32,7 +37,7 @@ public class OrderCommendUpdate implements Commend {
             driver.setPassword(httpServletRequest.getParameter("12345"));
             driver.setCarNumber(httpServletRequest.getParameter("122333bb"));
             driver.setPhoneNumber(httpServletRequest.getParameter("123344333"));
-            clientService.save(client);
+            driverService.save(driver);
 
             client.setName(httpServletRequest.getParameter("magdyaa"));
             client.setLastName(httpServletRequest.getParameter("shenoda"));
@@ -44,10 +49,14 @@ public class OrderCommendUpdate implements Commend {
             order.setData(httpServletRequest.getParameter("22.22"));
             order.setDriver(driver);
             order.setClient(client);
-            orderService.update(order);
+            orderService.save(order);
 
+            transaction.setOrder(order);
+            transaction.setAmount(233.3);
+            transaction.setCash(true);
+            transactionService.save(transaction);
 
-            log.info("order" + order);
+            log.info("create" + transaction);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage());
 
@@ -55,5 +64,4 @@ public class OrderCommendUpdate implements Commend {
 
         return new Page("/home.jsp", true, "Success!");
     }
-
 }

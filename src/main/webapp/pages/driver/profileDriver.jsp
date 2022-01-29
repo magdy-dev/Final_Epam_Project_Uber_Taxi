@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Profile</title>
@@ -46,6 +47,22 @@
             }
         }
     </style>
+    <title>Title</title>
+    <fmt:bundle basename="page_content">
+        <fmt:message key="D_profile.taxi" var="taxi"/>
+        <fmt:message key="D_profile.bec" var="bec"/>
+        <fmt:message key="D_profile.txt" var="txt"/>
+        <fmt:message key="D_profile.name" var="name"/>
+        <fmt:message key="D_profile.Last_name" var="lname"/>
+        <fmt:message key="D_profile.email" var="email"/>
+        <fmt:message key="D_profile.password" var="password"/>
+        <fmt:message key="D_profile.Phone_numbr" var="number"/>
+        <fmt:message key="D_profile.Car_number" var="Carnumber"/>
+
+
+
+
+    </fmt:bundle>
 </head>
 <body style="background-color: gold">
 
@@ -54,18 +71,8 @@
         <tag:userMenu/>
 
         <div class="col-sm-9">
-            <h1><small>Taxi successful</small></h1>
-            <p> become a successful taxi driver<br>
-
-                A taxi driver driving on a busy motorway
-                Before you do anything else, focus on one thing: licensing.
-                Stay on the right side of the law and ensure all taxis in your fleet are licensed. Customers are
-                unlikely to opt for your cab service if the vehicles lack licenses, as they’ll feel less secure.
-                Make sure all fleet vehicles have their licenses prominently displayed, as this will reassure potential
-                passengers that they’re in safe hands.
-                Next, find dependable taxi fleet insurance cover, suited to your specific needs.
-                Accidents, theft, vandalism, and damage all pose risks to your business investment: your vehicles.
-                You also want to make sure your drivers are covered in the event of an accident or incident in the cab..
+            <h1><small>${pageScope.taxi}</small></h1>
+            <p> ${pageScope.bec}<br>${pageScope.txt}
             </p>
             <br><br>
 
@@ -73,17 +80,17 @@
             <hr>
             <div class="container" action="${pageContext.request.contextPath}/controller">
                 <ul class="list-group" id="myList">
-                    <li class="list-group-item">First Name   : ${sessionScope.driver.name}</li>
-                    <li class="list-group-item">Last Name    : ${sessionScope.driver.lastName}</li>
-                    <li class="list-group-item">Email        : ${sessionScope.driver.email}</li>
-                    <li class="list-group-item">Password     : ${sessionScope.driver.password}</li>
-                    <li class="list-group-item">Phone Number : ${sessionScope.driver.phoneNumber}</li>
-                    <li class="list-group-item">Car Number   : ${sessionScope.driver.carNumber}</li>
+                    <li class="list-group-item">${pageScope.name}   : ${sessionScope.driver.name}</li>
+                    <li class="list-group-item">${pageScope.lname}   : ${sessionScope.driver.lastName}</li>
+                    <li class="list-group-item">${pageScope.email}       : ${sessionScope.driver.email}</li>
+                    <li class="list-group-item">${pageScope.password}     : ${sessionScope.driver.password}</li>
+                    <li class="list-group-item">${pageScope.number} : ${sessionScope.driver.phoneNumber}</li>
+                    <li class="list-group-item">${pageScope.Carnumber}   : ${sessionScope.driver.carNumber}</li>
                 </ul>
             </div>
             <hr>
 
-            <h4>Leave a Comment:</h4>
+            <h4>......................:</h4>
             <form role="form">
                 <div class="form-group">
                     <textarea class="form-control" rows="7" required></textarea>

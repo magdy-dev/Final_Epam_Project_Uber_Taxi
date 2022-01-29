@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.clientcomm;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Client;
 import com.magdy.taxiwebappliction.entity.Ride;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class ReloadClientHistory implements Commend {
+public class ReloadClientHistory implements Command {
     private RideServiceImpl rideService = new RideServiceImpl();
 
     @Override

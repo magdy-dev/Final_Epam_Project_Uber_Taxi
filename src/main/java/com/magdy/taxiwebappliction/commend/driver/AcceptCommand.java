@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.driver;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.entity.Ride;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcceptCommand implements Commend {
+public class AcceptCommand implements Command {
 
     @Override
     public Page execute(HttpServletRequest httpServletRequest) throws ServiceException {

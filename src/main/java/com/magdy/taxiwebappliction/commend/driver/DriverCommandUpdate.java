@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.driver;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.Driver;
 import com.magdy.taxiwebappliction.service.ServiceException;
@@ -10,7 +10,8 @@ import org.apache.logging.log4j.core.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class DriverCommendCreate implements Commend {
+public class DriverCommandUpdate implements Command {
+
 
     private static final Logger log= (Logger) LogManager.getLogger();
 
@@ -25,13 +26,12 @@ public class DriverCommendCreate implements Commend {
             driver.setPassword(httpServletRequest.getParameter("password"));
             driver.setPhoneNumber(httpServletRequest.getParameter("phoneNumber"));
             driver.setCarNumber(httpServletRequest.getParameter("carNumber"));
-            driver = driverServiceImpl.save(driver);
+            driver = driverServiceImpl.update(driver);
             log.info("creat" + driver);
-
-        } catch (ServiceException e) {
+        } catch (
+                ServiceException e) {
             throw new ServiceException(e.getMessage());
         }
-
         return new Page("/home.jsp", true, "Success!");
     }
 }

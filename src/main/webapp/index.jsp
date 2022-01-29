@@ -1,13 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: magdy
-  Date: 11/13/2021
-  Time: 1:10 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

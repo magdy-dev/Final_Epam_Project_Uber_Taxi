@@ -1,6 +1,6 @@
 package com.magdy.taxiwebappliction.commend.common;
 
-import com.magdy.taxiwebappliction.commend.Commend;
+import com.magdy.taxiwebappliction.commend.Command;
 import com.magdy.taxiwebappliction.commend.Page;
 import com.magdy.taxiwebappliction.entity.*;
 import com.magdy.taxiwebappliction.service.*;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class AccountCommandLogin implements Commend {
+public class AccountCommandLogin implements Command {
     private ClientServiceImpl clientServiceImpl = new ClientServiceImpl();
     private DriverServiceImpl driverService = new DriverServiceImpl();
     private RideServiceImpl rideService = new RideServiceImpl();
