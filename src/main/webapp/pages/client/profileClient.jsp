@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Profile</title>
@@ -42,6 +43,20 @@
             }
         }
     </style>
+    <fmt:bundle basename="page_content">
+        <fmt:message key="order.client.profile.complaint" var="complaint"/>
+        <fmt:message key="order.client.profile.taxi" var="taxi"/>
+        <fmt:message key="order.client.profile.txt" var="txt"/>
+        <fmt:message key="order.client.profile.name" var="name"/>
+        <fmt:message key="order.client.profile.L_name" var="lname"/>
+        <fmt:message key="order.client.profile.email" var="email"/>
+        <fmt:message key="order.client.profile.password" var="passw"/>
+        <fmt:message key="order.client.profile.phone" var="phone"/>
+        <fmt:message key="order.client.profile.welcome" var="welcome"/>
+        <fmt:message key="order.client.profile.taxiM" var="txim"/>
+        <fmt:message key="order.client.profile.wish" var="wish"/>
+
+    </fmt:bundle>
 </head>
 <body style="background-color: gold">
 
@@ -50,36 +65,30 @@
         <tag:userMenu/>
 
         <div class="col-sm-9">
-            <h1><small>complaint</small></h1>
-            <p>Making a complaint about a taxi service<br>
-                If you have a problem with a taxi or taxi driver's behavior, or you believe a vehicle to be unlicensed,
-                report it immediately. If the problem involves a criminal act, report it to the Police Service
-                Complaints
-                If you're unhappy with the fare, quality of vehicle, driving, or behavior of the driver or any other
-                issue, make your complaint to the driver or the taxi operator.
-
-                Explain in detail what went wrong, stay calm, and stick to the facts.</p>
+            <h1><small>${pageScope.complaint}</small></h1>
+            <p>${pageScope.taxi}<br>
+                ${pageScope.txt}</p>
             <br><br>
 
             <h4><small>Taxi.....</small></h4>
             <hr>
             <div class="container" action="${pageContext.request.contextPath}/controller">
                 <ul class="list-group" id="myList">
-                    <li class="list-group-item">First Name :${sessionScope.client.name}</li>
-                    <li class="list-group-item">Last Name :${sessionScope.client.lastName}</li>
-                    <li class="list-group-item">Email :${sessionScope.client.email}</li>
-                    <li class="list-group-item">Password :${sessionScope.client.password}</li>
-                    <li class="list-group-item">Phone Number:${sessionScope.client.phoneNumber}</li>
+                    <li class="list-group-item">${pageScope.nam} :${sessionScope.client.name}</li>
+                    <li class="list-group-item">${pageScope.lname} :${sessionScope.client.lastName}</li>
+                    <li class="list-group-item">${pageScope.email} :${sessionScope.client.email}</li>
+                    <li class="list-group-item">${pageScope.passw} :${sessionScope.client.password}</li>
+                    <li class="list-group-item">${pageScope.phone}:${sessionScope.client.phoneNumber}</li>
                 </ul>
             </div>
             <hr>
 
-            <h4>Welcome To Minsk:</h4>
+            <h4>${pageScope.welcome}:</h4>
             <form role="form">
 
                 <div class="container">
-                    <h2>Taxi Minsk</h2>
-                    <p>we wish for you happy tribe with us </p>
+                    <h2>${pageScope.txiM}</h2>
+                    <p>${pageScope.wish} </p>
 
                     <div class="row">
                         <div class="col-md-4">

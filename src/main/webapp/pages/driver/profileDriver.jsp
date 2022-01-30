@@ -59,9 +59,6 @@
         <fmt:message key="D_profile.Phone_numbr" var="number"/>
         <fmt:message key="D_profile.Car_number" var="Carnumber"/>
 
-
-
-
     </fmt:bundle>
 </head>
 <body style="background-color: gold">
